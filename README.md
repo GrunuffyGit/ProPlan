@@ -16,6 +16,7 @@ Technologies that will be used to create this web application are:
 
 ## Additional Nice-to-Have Features
 - Google Maps API for location and day view
+- Yelp API for food details
 - Link sharing
 
 ## Technical Risks
