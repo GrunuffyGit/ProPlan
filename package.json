@@ -1,0 +1,25 @@
+{
+  "name": "proplan",
+  "version": "1.0.0",
+  "description": "ProPlan is a platform where you can create extensive detailed iteneraries. Whether you are creating a schedule for an event, a work trip, or a vocation, ProPlan can help give you a better understanding of what you are trying to accomplish.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "heroku-postbuild": "cd react-client && npm install && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GrunuffyGit/ProPlan.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GrunuffyGit/ProPlan/issues"
+  },
+  "homepage": "https://github.com/GrunuffyGit/ProPlan#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.0.2"
+  }
+}
