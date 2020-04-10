@@ -5,10 +5,10 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, 'react-client/')));
+app.use(express.static(path.join(__dirname, 'react-client/build')));
 
 app.get('*', (_, res) => {
-    res.sendFile(path.join(__dirname+'/react-client/index.html'));
+    res.sendFile(path.join(__dirname+'/react-client/build/index.html'));
 });
 
 var server = app.listen(process.env.PORT || 3001, function(){
