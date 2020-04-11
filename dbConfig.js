@@ -2,8 +2,7 @@ const Pool = require('pg').Pool;
 const isProduction = process.env.NODE_ENV === "production";
 const connectionString = `postgres://localhost:5432/booktonica`
 const pool = new Pool({
-    connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-    ssl: true
+    connectionString: isProduction ? process.env.DATABASE_URL : connectionString
 })
 class dbFunctions{
     testApi = function(req, res){
