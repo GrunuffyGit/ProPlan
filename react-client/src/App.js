@@ -7,6 +7,7 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.prevData = "";
     this.state = {
       columnDefs: [
       {
@@ -15,59 +16,100 @@ class App extends React.Component {
       }, 
       {
         headerName: "Monday 2/12", 
-        field: "monday"
+        field: "monday",
+        cellRenderer: 'cellRenderer',
+        rowSpan: function(params) {
+          if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
+            this.prevData = params.data[this.field];
+            return 24;
+          } else if(params.data[this.field].length === 0){
+            this.prevData = params.data[this.field];
+            return 2;
+          }else{
+            return 0;
+          }
+        },
+        cellClassRules: { 'cell': 'value !== undefined' }
       }, 
       {
         headerName: "Tuesday 2/13", 
-        field: "tuesday"
+        field: "tuesday",
+        cellRenderer: 'cellRenderer',
+        rowSpan:  function(params) {
+          if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
+            this.prevData = params.data[this.field];
+            return 24;
+          } else if(params.data[this.field].length === 0){
+            this.prevData = params.data[this.field];
+            return 2;
+          }else{
+            return 0;
+          }
+        },
+        cellClassRules: { 'cell': 'value !== undefined' }
       },
       {
         headerName: "Wednesday 2/14", 
-        field: "wednesday"
+        field: "wednesday",
+        cellRenderer: 'cellRenderer',
+        rowSpan:  function(params) {
+          if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
+            this.prevData = params.data[this.field];
+            return 24;
+          } else if(params.data[this.field].length === 0){
+            this.prevData = params.data[this.field];
+            return 2;
+          }else{
+            return 0;
+          }
+        },
+        cellClassRules: { 'cell': 'value !== undefined' }
       },
     ],
       rowData: [
         {
         time: "12:00 AM", 
-        monday: "Celica", 
-        tuesday: 35000,
-        wednesday: "poop"
+        monday: "fish", 
+        tuesday: "same",
+        wednesday: "same"
       }, 
       {
         time: "1:00 AM", 
-        monday: "Mondeo", 
-        tuesday: 32000,
-        wednesday: "poop"
+        monday: "fish", 
+        tuesday: "",
+        wednesday: ""
       }, 
       {
         time: "2:00 AM", 
-        monday: "Boxter", 
-        tuesday: 72000,
-        wednesday: "poop"
+        monday: "", 
+        tuesday: "",
+        wednesday: ""
       },
       {
         time: "3:00 AM", 
-        monday: "Boxter", 
-        tuesday: 72000,
-        wednesday: "poop"
+        monday: "chiggen", 
+        tuesday: "",
+        wednesday: ""
       },
       {
         time: "4:00 AM", 
-        monday: "Boxter", 
-        tuesday: 72000,
-        wednesday: "poop"
+        monday: "chiggen", 
+        tuesday: "",
+        wednesday: ""
       },
       {
         time: "5:00 AM", 
-        monday: "Boxter", 
-        tuesday: 72000,
-        wednesday: "poop"
+        monday: "same", 
+        tuesday: "same",
+        wednesday: ""
       },
-    ]
+    ],
+    components: { cellRenderer: createCellRenderer() }
     }
   }
 
   onGridReady = params => {
+    this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridColumnApi.setColumnPinned("time", "left");
   }
@@ -82,13 +124,34 @@ class App extends React.Component {
       >
         <AgGridReact
           columnDefs={this.state.columnDefs}
-          rowData={this.state.rowData}
-          onGridReady={this.onGridReady}
+            rowData={this.state.rowData}
+            components={this.state.components}
+            suppressRowTransform={true}
+            onGridReady={this.onGridReady}
           >
         </AgGridReact>
       </div>
     );
   }
+}
+
+function createCellRenderer() {
+  function CellRenderer() {}
+  CellRenderer.prototype.init = function(params) {
+    var cellBlank = !params.value;
+    if (cellBlank) {
+      return null;
+    }
+    this.ui = document.createElement('div');
+    this.ui.innerHTML =
+      '<div>' +
+      params.value +
+      '</div>'
+  };
+  CellRenderer.prototype.getGui = function() {
+    return this.ui;
+  };
+  return CellRenderer;
 }
 
 export default App;

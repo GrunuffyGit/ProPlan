@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.cell {
+  background: white;
+  border-left: 1px solid lightgrey !important;
+  border-right: 1px solid lightgrey !important;
+  border-top: 1px solid lightgrey !important;
+  top: -1px;
+}
+
+.cell:hover{
+  background-color: rgb(245, 245, 245);
+}
