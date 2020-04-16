@@ -1,6 +1,6 @@
 # ProPlan
 ## What is ProPlan?
-ProPlan is a platform where you can create extensive detailed iteneraries. Whether you are creating a schedule for an event, a work trip, or a vocation, ProPlan can help give you a better understanding of what you are trying to accomplish.
+ProPlan is a platform where you can create extensive detailed itineraries. Whether you are creating a schedule for an event, a work trip, or a vocation, ProPlan can help give you a better understanding of what you are trying to accomplish.
 
 ## Technology
 Technologies that will be used to create this web application are:

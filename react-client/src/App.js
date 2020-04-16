@@ -9,6 +9,9 @@ class App extends React.Component {
     super(props);
     this.prevData = "";
     this.state = {
+      defaultColDef: {
+        resizable: true,
+      },
       columnDefs: [
       {
         headerName: "Time", 
@@ -31,77 +34,113 @@ class App extends React.Component {
         },
         cellClassRules: { 'cell': 'value !== undefined' }
       }, 
-      {
-        headerName: "Tuesday 2/13", 
-        field: "tuesday",
-        cellRenderer: 'cellRenderer',
-        rowSpan:  function(params) {
-          if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
-            this.prevData = params.data[this.field];
-            return 24;
-          } else if(params.data[this.field].length === 0){
-            this.prevData = params.data[this.field];
-            return 2;
-          }else{
-            return 0;
-          }
-        },
-        cellClassRules: { 'cell': 'value !== undefined' }
-      },
-      {
-        headerName: "Wednesday 2/14", 
-        field: "wednesday",
-        cellRenderer: 'cellRenderer',
-        rowSpan:  function(params) {
-          if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
-            this.prevData = params.data[this.field];
-            return 24;
-          } else if(params.data[this.field].length === 0){
-            this.prevData = params.data[this.field];
-            return 2;
-          }else{
-            return 0;
-          }
-        },
-        cellClassRules: { 'cell': 'value !== undefined' }
-      },
+      // {
+      //   headerName: "Tuesday 2/13", 
+      //   field: "tuesday",
+      //   cellRenderer: 'cellRenderer',
+      //   rowSpan:  function(params) {
+      //     if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
+      //       this.prevData = params.data[this.field];
+      //       return 24;
+      //     } else if(params.data[this.field].length === 0){
+      //       this.prevData = params.data[this.field];
+      //       return 2;
+      //     }else{
+      //       return 0;
+      //     }
+      //   },
+      //   cellClassRules: { 'cell': 'value !== undefined' }
+      // },
+      // {
+      //   headerName: "Wednesday 2/14", 
+      //   field: "wednesday",
+      //   cellRenderer: 'cellRenderer',
+      //   rowSpan:  function(params) {
+      //     if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
+      //       this.prevData = params.data[this.field];
+      //       return 24;
+      //     } else if(params.data[this.field].length === 0){
+      //       this.prevData = params.data[this.field];
+      //       return 2;
+      //     }else{
+      //       return 0;
+      //     }
+      //   },
+      //   cellClassRules: { 'cell': 'value !== undefined' }
+      // },
     ],
       rowData: [
         {
         time: "12:00 AM", 
         monday: "fish", 
-        tuesday: "same",
-        wednesday: "same"
+        // tuesday: "same",
+        // wednesday: "same"
       }, 
       {
         time: "1:00 AM", 
         monday: "fish", 
-        tuesday: "",
-        wednesday: ""
+        // tuesday: "",
+        // wednesday: ""
       }, 
       {
         time: "2:00 AM", 
         monday: "", 
-        tuesday: "",
-        wednesday: ""
+        // tuesday: "",
+        // wednesday: ""
       },
       {
         time: "3:00 AM", 
         monday: "chiggen", 
-        tuesday: "",
-        wednesday: ""
+        // tuesday: "",
+        // wednesday: ""
       },
       {
         time: "4:00 AM", 
         monday: "chiggen", 
-        tuesday: "",
-        wednesday: ""
+        // tuesday: "",
+        // wednesday: ""
       },
       {
         time: "5:00 AM", 
-        monday: "same", 
-        tuesday: "same",
-        wednesday: ""
+        monday: "travel", 
+        // tuesday: "same",
+        // wednesday: ""
+      },
+      {
+        time: "6:00 AM", 
+        monday: "park", 
+        // tuesday: "same",
+        // wednesday: ""
+      },
+      {
+        time: "7:00 AM", 
+        monday: "park", 
+        // tuesday: "same",
+        // wednesday: ""
+      },
+      {
+        time: "8:00 AM", 
+        monday: "park", 
+        // tuesday: "same",
+        // wednesday: ""
+      },
+      {
+        time: "9:00 AM", 
+        monday: "", 
+        // tuesday: "same",
+        // wednesday: ""
+      },
+      {
+        time: "10:00 AM", 
+        monday: "", 
+        // tuesday: "same",
+        // wednesday: ""
+      },
+      {
+        time: "11:00 AM", 
+        monday: "", 
+        // tuesday: "same",
+        // wednesday: ""
       },
     ],
     components: { cellRenderer: createCellRenderer() }
@@ -112,6 +151,7 @@ class App extends React.Component {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
     this.gridColumnApi.setColumnPinned("time", "left");
+    this.gridApi.sizeColumnsToFit();
   }
 
   render() {
@@ -119,11 +159,11 @@ class App extends React.Component {
       <div
         className="ag-theme-balham"
         style={{
-        height: '20vh',
-        width: '50vw' }}
+        height: '30em',
+        width: '30em' }}
       >
         <AgGridReact
-          columnDefs={this.state.columnDefs}
+            columnDefs={this.state.columnDefs}
             rowData={this.state.rowData}
             components={this.state.components}
             suppressRowTransform={true}
