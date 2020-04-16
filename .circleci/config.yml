@@ -16,7 +16,7 @@ workflows:
     do_it:
       jobs:
         - build
-        - heroku/deploy-via-git: # This is a pre-configured job.
+        - heroku/deploy-via-git:
             requires:
               - build
             filters:
