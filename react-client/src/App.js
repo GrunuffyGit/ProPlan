@@ -90,13 +90,13 @@ class App extends React.Component {
       },
       {
         time: "3:00 AM", 
-        monday: "chiggen", 
+        monday: "MakingChanges", 
         // tuesday: "",
         // wednesday: ""
       },
       {
         time: "4:00 AM", 
-        monday: "chiggen", 
+        monday: "MakingChanges", 
         // tuesday: "",
         // wednesday: ""
       },
