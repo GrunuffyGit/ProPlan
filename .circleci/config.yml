@@ -4,22 +4,21 @@ orbs:
   heroku: circleci/heroku@1.0.1
 
 jobs:
-  build-and-test:
+  build:
     executor:
       name: node/default
     steps:
       - checkout
       - node/with-cache:
           steps:
-            - run: npm install --dev
-            - run: npm run test
+            - run: npm install
 workflows:
     do_it:
       jobs:
-        - build-and-test
+        - build
         - heroku/deploy-via-git: # This is a pre-configured job.
             requires:
-              - build-and-test
+              - build
             filters:
               branches:
                 only:
