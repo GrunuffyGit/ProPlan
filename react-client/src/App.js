@@ -34,113 +34,113 @@ class App extends React.Component {
         },
         cellClassRules: { 'cell': 'value !== undefined' }
       }, 
-      // {
-      //   headerName: "Tuesday 2/13", 
-      //   field: "tuesday",
-      //   cellRenderer: 'cellRenderer',
-      //   rowSpan:  function(params) {
-      //     if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
-      //       this.prevData = params.data[this.field];
-      //       return 24;
-      //     } else if(params.data[this.field].length === 0){
-      //       this.prevData = params.data[this.field];
-      //       return 2;
-      //     }else{
-      //       return 0;
-      //     }
-      //   },
-      //   cellClassRules: { 'cell': 'value !== undefined' }
-      // },
-      // {
-      //   headerName: "Wednesday 2/14", 
-      //   field: "wednesday",
-      //   cellRenderer: 'cellRenderer',
-      //   rowSpan:  function(params) {
-      //     if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
-      //       this.prevData = params.data[this.field];
-      //       return 24;
-      //     } else if(params.data[this.field].length === 0){
-      //       this.prevData = params.data[this.field];
-      //       return 2;
-      //     }else{
-      //       return 0;
-      //     }
-      //   },
-      //   cellClassRules: { 'cell': 'value !== undefined' }
-      // },
+      {
+        headerName: "Tuesday 2/13", 
+        field: "tuesday",
+        cellRenderer: 'cellRenderer',
+        rowSpan:  function(params) {
+          if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
+            this.prevData = params.data[this.field];
+            return 24;
+          } else if(params.data[this.field].length === 0){
+            this.prevData = params.data[this.field];
+            return 2;
+          }else{
+            return 0;
+          }
+        },
+        cellClassRules: { 'cell': 'value !== undefined' }
+      },
+      {
+        headerName: "Wednesday 2/14", 
+        field: "wednesday",
+        cellRenderer: 'cellRenderer',
+        rowSpan:  function(params) {
+          if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
+            this.prevData = params.data[this.field];
+            return 24;
+          } else if(params.data[this.field].length === 0){
+            this.prevData = params.data[this.field];
+            return 2;
+          }else{
+            return 0;
+          }
+        },
+        cellClassRules: { 'cell': 'value !== undefined' }
+      },
     ],
       rowData: [
         {
         time: "12:00 AM", 
         monday: "fish", 
-        // tuesday: "same",
-        // wednesday: "same"
+        tuesday: "same",
+        wednesday: "same"
       }, 
       {
         time: "1:00 AM", 
         monday: "fish", 
-        // tuesday: "",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: ""
       }, 
       {
         time: "2:00 AM", 
         monday: "", 
-        // tuesday: "",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: ""
       },
       {
         time: "3:00 AM", 
         monday: "MakingChanges", 
-        // tuesday: "",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: ""
       },
       {
         time: "4:00 AM", 
         monday: "MakingChanges", 
-        // tuesday: "",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: ""
       },
       {
         time: "5:00 AM", 
         monday: "travel", 
-        // tuesday: "same",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: ""
       },
       {
         time: "6:00 AM", 
         monday: "park", 
-        // tuesday: "same",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: "weewoo"
       },
       {
         time: "7:00 AM", 
         monday: "park", 
-        // tuesday: "same",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: "Merp"
       },
       {
         time: "8:00 AM", 
         monday: "park", 
-        // tuesday: "same",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: "Merp"
       },
       {
         time: "9:00 AM", 
         monday: "", 
-        // tuesday: "same",
-        // wednesday: ""
+        tuesday: "",
+        wednesday: ""
       },
       {
         time: "10:00 AM", 
         monday: "", 
-        // tuesday: "same",
-        // wednesday: ""
+        tuesday: "Merp",
+        wednesday: ""
       },
       {
         time: "11:00 AM", 
         monday: "", 
-        // tuesday: "same",
-        // wednesday: ""
+        tuesday: "Merp",
+        wednesday: "weewoo"
       },
     ],
     components: { cellRenderer: createCellRenderer() }
