@@ -127,7 +127,7 @@ class App extends React.Component {
       {
         time: "9:00 AM", 
         monday: "", 
-        tuesday: "",
+        tuesday: "ssss",
         wednesday: ""
       },
       {
