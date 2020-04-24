@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import createAuth0Client from "@auth0/auth0-spa-js";
+import {doesUserExist, createUser} from "./utils/apiCalls";
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
@@ -35,7 +36,18 @@ export const Auth0Provider = ({
       if (isAuthenticated) {
         const user = await auth0FromHook.getUser();
         setUser(user);
-        console.log(JSON.stringify(user));
+        let userJSON = {
+          user_id: user.sub,
+          name: user.nickname,
+          email: user.email
+        }
+        const hasUser = await doesUserExist(user.sub);
+        if(!hasUser[0].exists){
+          const saveUser = await createUser(userJSON);
+          if(saveUser){
+            console.log("user created");
+          }
+        }
       }
 
       setLoading(false);

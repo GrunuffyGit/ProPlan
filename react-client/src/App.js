@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+// import { AgGridReact } from 'ag-grid-react';
+// import 'ag-grid-community/dist/styles/ag-grid.css';
+// import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 // class App extends React.Component {
 //   constructor(props) {
@@ -58,7 +58,7 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 //         rowSpan:  function(params) {
 //           if (params.data[this.field].length !== 0 && params.data[this.field] !== this.prevData) {
 //             this.prevData = params.data[this.field];
-//             return 24;
+//             return 2;
 //           } else if(params.data[this.field].length === 0){
 //             this.prevData = params.data[this.field];
 //             return 2;
@@ -84,13 +84,13 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 //       }, 
 //       {
 //         time: "2:00 AM", 
-//         monday: "", 
+//         monday: "fish", 
 //         tuesday: "",
 //         wednesday: ""
 //       },
 //       {
 //         time: "3:00 AM", 
-//         monday: "MakingChanges", 
+//         monday: "", 
 //         tuesday: "",
 //         wednesday: ""
 //       },
@@ -147,31 +147,31 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 //     }
 //   }
 
-//   onGridReady = params => {
-//     this.gridApi = params.api;
-//     this.gridColumnApi = params.columnApi;
-//     this.gridColumnApi.setColumnPinned("time", "left");
-//     this.gridApi.sizeColumnsToFit();
-//   }
+  // onGridReady = params => {
+  //   this.gridApi = params.api;
+  //   this.gridColumnApi = params.columnApi;
+  //   this.gridColumnApi.setColumnPinned("time", "left");
+  //   this.gridApi.sizeColumnsToFit();
+  // }
 
-//   render() {
-//     return (
-//       <div
-//         className="ag-theme-balham"
-//         style={{
-//         height: '30em',
-//         width: '30em' }}
-//       >
-//         <AgGridReact
-//             columnDefs={this.state.columnDefs}
-//             rowData={this.state.rowData}
-//             components={this.state.components}
-//             suppressRowTransform={true}
-//             onGridReady={this.onGridReady}
-//           >
-//         </AgGridReact>
-//       </div>
-//     );
+  // render() {
+  //   return (
+  //     <div
+  //       className="ag-theme-balham"
+  //       style={{
+  //       height: '30em',
+  //       width: '30em' }}
+  //     >
+  //       <AgGridReact
+  //           columnDefs={this.state.columnDefs}
+  //           rowData={this.state.rowData}
+  //           components={this.state.components}
+  //           suppressRowTransform={true}
+  //           onGridReady={this.onGridReady}
+  //         >
+  //       </AgGridReact>
+  //     </div>
+  //   );
 //   }
 // }
 
@@ -181,7 +181,23 @@ import Profile from "./components/Profile";
 
 function App() {
   const { loading } = useAuth0();
+  const [time_start, setTime_start] = useState();
+  const [time_end, setTime_end] = useState();
 
+  useEffect(()=>{
+    let a = async()=>{fetch("/activities/1",{
+      method: "GET"
+    })
+    .then((res)=>{return res.json()})
+    .then((data) => 
+    { let time = new Date (data[0].time_start);
+      setTime_start(time.toLocaleTimeString());
+      time = new Date (data[0].time_end);
+      setTime_end(time.toLocaleTimeString());
+    })}
+    a();
+  })
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -192,6 +208,7 @@ function App() {
       <div>
         <Profile />
       </div>
+      <div> Time is {time_start} and {time_end}</div>
     </div>
   );
 }

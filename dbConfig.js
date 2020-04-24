@@ -7,7 +7,7 @@ const pool = new Pool({
 class dbFunctions{
     addUser = function(req, res){
         const {user_id, name, email} = req.body;
-        pool.query("INSERT INTO users (user_id, name, email) VALUES ($1, $2, $3);", [user_id, name, email],
+        pool.query("INSERT INTO users (user_id, name, email) VALUES ($1, $2, $3) RETURNING *;", [user_id, name, email],
         (error,result)=>{
             if(error){
                 console.log(error);
@@ -18,8 +18,16 @@ class dbFunctions{
     }
 
     addPlan = function(req,res){
-        const {created_by, name, description, image_url, start_date, end_date} = req.body; 
-        pool.query("INSERT INTO plans (created_by, name, description, image_url, start_date, end_date) VAULES ($1, $2, $3, $4, $5, $6);",
+        let {created_by, name, description, image_url, start_date, end_date} = req.body; 
+        start_date = new Date (start_date);
+        end_date = new Date (end_date);
+        if(description === null){
+            description = "No Description";
+        }
+        if(image_url === null){
+            image_url = "https://data.whicdn.com/images/59987907/original.png";
+        }
+        pool.query("INSERT INTO plans (created_by, name, description, image_url, start_date, end_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;",
         [created_by, name, description, image_url, start_date, end_date], 
         (error, result) =>{
             if(error){
@@ -31,9 +39,26 @@ class dbFunctions{
     }
 
     addActivity = function(req, res){
-        const {plan_id, name, location, coordinates, time_start, time_end, notes} = req.body;
-        pool.query("INSERT INTO activities (plan_id, name, location, coordinates, time_start, time_end, notes) VALUES ($1, $2, $3, $4, $5, $6, $7);",
+        let {plan_id, name, location, coordinates, time_start, time_end, notes} = req.body;
+        time_start = new Date (time_start);
+        time_end = new Date (time_end);
+        console.log(time_end);
+        console.log(time_start);
+        pool.query("INSERT INTO activities (plan_id, name, location, coordinates, time_start, time_end, notes) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;",
         [plan_id, name, location, coordinates, time_start, time_end, notes], 
+        (error,result)=>{
+            if(error){
+                console.log(error);
+            }else{
+                res.status(200).json(result.rows);
+            }
+        });
+    }
+
+    hasUser = function(req, res) {
+        const user_id = req.params.user_id;
+        pool.query("SELECT EXISTS(SELECT * FROM users WHERE user_id = $1);",
+        [user_id],
         (error,result)=>{
             if(error){
                 console.log(error);
@@ -71,8 +96,8 @@ class dbFunctions{
 
     editPlan = function(req,res){
         const {plan_id, update_field, value} = req.body;
-        pool.query("UPDATE plans SET $1 = $2 WHERE id = $3;",
-        [update_field, value, plan_id],
+        pool.query(`UPDATE plans SET ${update_field} = $1 WHERE id = $2 RETURNING *;`,
+        [value, plan_id],
         (error,result)=>{
             if(error){
                 console.log(error);
@@ -84,8 +109,8 @@ class dbFunctions{
 
     editActivity = function(req, res){
         const {activity_id, update_field, value} = req.body;
-        pool.query("UPDATE activities SET $1 = $2 WHERE id = $3;",
-        [update_field, value, activity_id],
+        pool.query(`UPDATE activities SET ${update_field} = $1 WHERE id = $2 RETURNING *;`,
+        [value, activity_id],
         (error,result)=>{
             if(error){
                 console.log(error);
