@@ -7,6 +7,7 @@ import {
   NavLink} from 'reactstrap';
   import classnames from 'classnames';
 import { useAuth0 } from "../react-auth0-spa";
+import ViewPlan from '../components/ViewPlan';
 
 const MyPlans = () =>{
   const { loading, user } = useAuth0();
@@ -40,7 +41,7 @@ const MyPlans = () =>{
           </Nav>
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1">
-              <h1>Tab 1 Contents</h1>
+              <ViewPlan />
             </TabPane>
             <TabPane tabId="2">
               <h1>Tab 2 Contents</h1>
