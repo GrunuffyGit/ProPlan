@@ -2,49 +2,23 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.row {
+  margin: 0px !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.proplan-description {
+  text-align: left;
+  font-size: medium;
+  margin-left: 10rem;
+  margin-right: 10rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.jumbotron{
+  padding-top: 10rem;
+  padding-bottom: 10rem;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.cell {
-  background: white;
-  border-left: 1px solid lightgrey !important;
-  border-right: 1px solid lightgrey !important;
-  border-top: 1px solid lightgrey !important;
-  top: -1px;
-}
-
-.cell:hover{
-  background-color: rgb(245, 245, 245);
+h2{
+  text-align: left;
+  margin: 5rem;
 }

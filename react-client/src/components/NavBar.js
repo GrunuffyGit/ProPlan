@@ -28,7 +28,7 @@ const NavBar = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
+              <NavLink href="/MyPlans">My Plans</NavLink>
             </NavItem>
             <NavItem>
             {!isAuthenticated && (

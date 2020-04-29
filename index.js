@@ -12,6 +12,9 @@ app.use(express.static(path.join(__dirname, 'react-client/build')));
 app.get('/', (_, res) => {
     res.sendFile(path.join(__dirname+'/react-client/build/index.html'));
 });
+app.get('/MyPlans', (_, res) => {
+    res.sendFile(path.join(__dirname+'/react-client/build/index.html'));
+});
 
 app.get("/users/:user_id", dbFunc.hasUser);
 app.get("/plans/:user_id", dbFunc.getPlans);
