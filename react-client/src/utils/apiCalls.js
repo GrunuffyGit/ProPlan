@@ -43,3 +43,26 @@ export function createPlan(planJSON){
         return res.json();
     });
 }
+
+export function hasPlan(verifyJSON){
+    return fetch(`/hasPlan`,
+    {
+        method: "POST",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+    },
+        body: JSON.stringify(verifyJSON)
+    }).then(res => {
+        return res.json();
+    });
+}
+
+export function getActivities(plan_id){
+    return fetch(`/activities/${plan_id}`,
+    {
+        method: "GET"
+    }).then(res => {
+        return res.json();
+    });
+}

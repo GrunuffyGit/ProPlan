@@ -27,9 +27,7 @@ const AllMyPlans = () =>{
         <h1>Loading...</h1>
       </div>);
   }
-  const selectingPlan = (plan_id) =>{
-    
-  }
+  
   return(
     <div className="App">
       <h1> My Plans </h1>

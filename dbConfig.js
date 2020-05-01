@@ -68,6 +68,19 @@ class dbFunctions{
         });
     }
 
+    planBelongToUser = function(req, res) {
+        const {user_id, plan_id} = req.body;
+        pool.query("SELECT EXISTS(SELECT * FROM plans WHERE created_by = $1 AND id = $2);",
+        [user_id, plan_id],
+        (error,result)=>{
+            if(error){
+                console.log(error);
+            }else{
+                res.status(200).json(result.rows);
+            }
+        });
+    }
+
     getPlans = function(req,res){
         const user_id = req.params.user_id;
         pool.query("SELECT * FROM plans WHERE created_by = $1;",

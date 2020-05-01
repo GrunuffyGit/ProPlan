@@ -24,6 +24,7 @@ app.get("/users/:user_id", dbFunc.hasUser);
 app.get("/plans/:user_id", dbFunc.getPlans);
 app.get("/activities/:plan_id", dbFunc.getActivities);
 
+app.post("/hasPlan", dbFunc.planBelongToUser);
 app.post("/users", dbFunc.addUser);
 app.post("/plans", dbFunc.addPlan);
 app.post("/activities", dbFunc.addActivity);

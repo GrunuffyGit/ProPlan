@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { 
   Nav,
   NavItem,
@@ -8,11 +8,28 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 import { useAuth0 } from "../react-auth0-spa";
+import { hasPlan } from '../utils/apiCalls';
 
 const Planning = ({match}) =>{
   const { params: { planID } } = match;
   const { loading, user } = useAuth0();
+  const [belongToUser, setBelongToUser] = useState();
   const [activeTab, setActiveTab] = useState('1');
+  const checkingPlanBelongToUser = async() =>{
+    let JSONbody = {
+      user_id: user.sub,
+      plan_id: planID
+    }
+    const doesBelong = await hasPlan(JSONbody);
+    setBelongToUser(doesBelong[0].exists);
+  }
+
+  useEffect(()=>{
+    if(user){
+      checkingPlanBelongToUser();
+    }
+  },[user])
+
 
   const toggle = tab => {
     if(activeTab !== tab) setActiveTab(tab);
@@ -28,6 +45,14 @@ const Planning = ({match}) =>{
       <div className="App">
         <h1>Loading...</h1>
       </div>);
+  }
+
+  if(!belongToUser){
+    return(
+      <div>
+        <h1>This plan doesn't belong to you.</h1>
+      </div>
+    );
   }
 
   return(
