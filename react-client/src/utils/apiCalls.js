@@ -16,7 +16,30 @@ export function createUser(userJSON){
         "Content-Type": "application/json"
     },
         body: JSON.stringify(userJSON)
-  }).then(res => {
-      return res.json();
-  });
+    }).then(res => {
+        return res.json();
+    });
+}
+
+export function getPlan(user_id){
+    return fetch(`/plans/${user_id}`,
+    {
+        method: "GET"
+    }).then(res => {
+        return res.json();
+    });
+}
+
+export function createPlan(planJSON){
+    return fetch(`/plans`,
+    {
+        method: "POST",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+    },
+        body: JSON.stringify(planJSON)
+    }).then(res => {
+        return res.json();
+    });
 }

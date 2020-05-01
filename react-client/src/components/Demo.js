@@ -22,12 +22,12 @@ function createCellRenderer() {
     return CellRenderer;
 }
 
-const ViewPlan = () => {
-    let prevData = "";
-    const [defaultColDef, setDefaultColDef] = useState({
+const Demo = () => {
+    let prevData = "none";
+    let defaultColDef = {
         resizable: true
-    });
-    const [columnDefs, setColumnDefs] = useState([{
+    };
+    let columnDefs =[{
             headerName: "Time", 
             field: "time"
         }, 
@@ -37,11 +37,18 @@ const ViewPlan = () => {
             cellRenderer: 'cellRenderer',
             rowSpan: function(params) {
                 if (params.data[this.field].length !== 0 && params.data[this.field] !== prevData) {
+                    console.log("1prevData: "+prevData +" paramdata:"+ params.data[this.field]);
+                    console.log(prevData == params.data[this.field]);
                     prevData = params.data[this.field];
-                    return 24;
-                } else if(params.data[this.field].length === 0 || params.data[this.field] === prevData){
-                    prevData = params.data[this.field];
+                    console.log("2prevData: "+prevData +" paramdata:"+ params.data[this.field]);
+                    return 2;
+                }else if(params.data[this.field] === prevData){
+                    console.log("1prevData: "+prevData +" paramdata:"+ params.data[this.field]);
+                    console.log(prevData == params.data[this.field]);
                     return 0;
+                }else{
+                    prevData = params.data[this.field];
+                    return 1;
                 }
             },
             cellClassRules: { 
@@ -55,10 +62,10 @@ const ViewPlan = () => {
             cellRenderer: 'cellRenderer',
             rowSpan:  function(params) {
                 if (params.data[this.field].length !== 0 && params.data[this.field] !== prevData) {
-                    prevData = params.data[this.field];
-                    return 24;
+                    // setPrevData(params.data[this.field]);
+                    return 1;
                 }else if(params.data[this.field].length === 0){
-                    prevData = params.data[this.field];
+                    // setPrevData(params.data[this.field]);
                     return 0;
                 }
             },
@@ -69,18 +76,18 @@ const ViewPlan = () => {
             field: "wednesday",
             cellRenderer: 'cellRenderer',
             rowSpan:  function(params) {
-                if (params.data[this.field].length !== 0 && params.data[this.field] !== prevData) {
-                    prevData = params.data[this.field];
+                if(params.data[this.field].length !== 0 && params.data[this.field] !== prevData) {
+                    // setPrevData(params.data[this.field]);
                     return 2;
-                } else if(params.data[this.field].length === 0){
-                    prevData = params.data[this.field];
+                }else if(params.data[this.field].length === 0){
+                    // setPrevData(params.data[this.field]);
                     return 0;
                 }
             },
                 cellClassRules: { 'cell': 'value !== undefined' }
         }
-    ]);
-    const [rowData, setRowData] = useState([
+    ];
+    let rowData = [
         {
             time: "12:00 AM", 
             monday: "fish", 
@@ -153,16 +160,14 @@ const ViewPlan = () => {
             tuesday: "Merp",
             wednesday: "weewoo"
         },
-    ]);
-    const [components, setComponents] = useState({
+    ];
+    let components = {
         cellRenderer: createCellRenderer()
-    });
+    };
 
     const onGridReady = params => {
         let gridApi = params.api;
         let gridColumnApi = params.columnApi;
-        // let gridOptions = params.options;
-        // gridOptions.suppressRowTransform = true;
         gridColumnApi.setColumnPinned("time", "left");
         gridApi.sizeColumnsToFit();
         
@@ -188,4 +193,4 @@ const ViewPlan = () => {
   );
 };
 
-export default ViewPlan;
+export default Demo;

@@ -11,7 +11,7 @@ import {
 } from 'reactstrap';
 import { useAuth0 } from "../react-auth0-spa";
 
-const NavBar = (props) => {
+const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);

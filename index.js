@@ -15,6 +15,10 @@ app.get('/', (_, res) => {
 app.get('/MyPlans', (_, res) => {
     res.sendFile(path.join(__dirname+'/react-client/build/index.html'));
 });
+app.get('/ViewPlan/:planID', (_, res) => {
+    res.sendFile(path.join(__dirname+'/react-client/build/index.html'));
+});
+
 
 app.get("/users/:user_id", dbFunc.hasUser);
 app.get("/plans/:user_id", dbFunc.getPlans);
