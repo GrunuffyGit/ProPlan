@@ -8,12 +8,14 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 import { useAuth0 } from "../react-auth0-spa";
-import { hasPlan } from '../utils/apiCalls';
+import { hasPlan, getActivities } from '../utils/apiCalls';
+import PlanTable from '../components/PlanTable';
 
 const Planning = ({match}) =>{
   const { params: { planID } } = match;
   const { loading, user } = useAuth0();
   const [belongToUser, setBelongToUser] = useState();
+  const [activities, setActivities] = useState();
   const [activeTab, setActiveTab] = useState('1');
   const checkingPlanBelongToUser = async() =>{
     let JSONbody = {
@@ -23,13 +25,21 @@ const Planning = ({match}) =>{
     const doesBelong = await hasPlan(JSONbody);
     setBelongToUser(doesBelong[0].exists);
   }
-
+  const loadActivities = async() => {
+    const grabActivities = await getActivities(planID);
+    setActivities(grabActivities);
+  }
   useEffect(()=>{
     if(user){
       checkingPlanBelongToUser();
     }
   },[user])
 
+  useEffect(()=>{
+    if(belongToUser){
+      loadActivities();
+    }
+  },[belongToUser])
 
   const toggle = tab => {
     if(activeTab !== tab) setActiveTab(tab);
@@ -72,7 +82,7 @@ const Planning = ({match}) =>{
           </Nav>
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1">
-              <h1>View</h1>
+              <PlanTable activity={activities} />
             </TabPane>
             <TabPane tabId="2">
               <h1>Edit</h1>

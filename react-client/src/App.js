@@ -20,7 +20,7 @@ function App() {
             <AllMyPlans />
           </div>
         )}/>
-        <Route exact={true} path='/ViewPlan/:planID' component={Planning}/>
+        <Route exact={true} path='/MyPlans/:planID' component={Planning}/>
     </BrowserRouter>
   );
 }
