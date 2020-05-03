@@ -62,7 +62,8 @@ const Planning = ({match}) =>{
       <div>
         <h1>This plan doesn't belong to you.</h1>
       </div>
-    );
+   
+   );
   }
 
   return(
