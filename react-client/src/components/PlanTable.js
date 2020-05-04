@@ -147,6 +147,12 @@ const PlanTable = (props) => {
         }
     }
 
+   
+    columnDefs.sort((column1, column2) => {
+        let date1 = new Date (column1.field);
+        let date2 = new Date (column2.field);
+        return date1.getUTCDate() - date2.getUTCDate()});
+
     let components = {
         cellRenderer: createCellRenderer()
     };
