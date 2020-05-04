@@ -69,13 +69,14 @@ const PlanTable = (props) => {
     let defaultColDef = {
         resizable: true
     };
+
+    //setting up the time column
     let columnDefs =[{
             headerName: "Time", 
             field: "time"
         }
     ];
     let rowData = [];
-
     let am_pm = "AM";
     for(let i=0; i<24; i++){
         let timeHour = i;
@@ -92,9 +93,9 @@ const PlanTable = (props) => {
         })
     }
 
-    let prevData = "none";
+    let prevHourIndex = "";
     let rowSpanSpaces = [];
-
+    //running through each activity
     for(const activity of props.activity){
         let time_start = new Date(activity.time_start);
         let time_end = new Date(activity.time_end);
@@ -102,10 +103,11 @@ const PlanTable = (props) => {
         let timeSpanOfActivity = time_end.getHours() - time_start.getHours();
 
         //to store # of spaces needed for each activity
-        let activityExists = rowSpanSpaces.findIndex((element)=> element.name === activity.name);
+        let activityExists = rowSpanSpaces.findIndex((element)=> element.name === activity.name && element.day === date);
         if(activityExists === -1){
             rowSpanSpaces.push({
                 name: activity.name,
+                day: date,
                 space: timeSpanOfActivity
             })
         }
@@ -119,18 +121,17 @@ const PlanTable = (props) => {
                 cellRenderer: 'cellRenderer',
                 //determining how much each cell will be spanning
                 rowSpan: function(params) {
-                    if (params.data[date].length !== 0 && params.data[date] !== prevData) {
+                    prevHourIndex = rowData.findIndex((element) => element.time === params.data.time) -1;
+                    if (params.data[date].length !== 0 && (rowData[prevHourIndex][date] !== params.data[date] || prevHourIndex === -1)) {
                         let indexOfSpace = rowSpanSpaces.findIndex((element)=> element.name === params.data[date]);
                         return rowSpanSpaces[indexOfSpace].space;
                     }else{
-                        prevData = params.data[date];
                         return 1;
                     }
                 },
                 //setting class for the divs for each cell to identify which cells are going to be spanned
                 cellClass: function(params) {
-                    if (params.data[date].length !== 0 && params.data[date] !== prevData) {
-                        prevData = params.data[date];
+                    if (params.data[date].length !== 0 && (rowData[prevHourIndex][date] !== params.data[date] || prevHourIndex === -1)) {
                         return "cellSpan";
                     }else{
                         return "normCell"
@@ -163,13 +164,14 @@ const PlanTable = (props) => {
         className="ag-theme-balham"
         style={{
         height: '30em',
-        width: '100vw' }}>
+        width: '100em' }}>
             <AgGridReact
                 defaultColDef={defaultColDef}
                 columnDefs={columnDefs}
                 rowData={rowData}
                 components={components}
                 suppressRowTransform={true}
+                suppressMovable={true}
                 onGridReady={onGridReady}>
             </AgGridReact>
         </div>
