@@ -66,7 +66,6 @@ const PlanTable = (props) => {
         );
     }
 
-    let prevData = "none";
     let defaultColDef = {
         resizable: true
     };
@@ -93,37 +92,55 @@ const PlanTable = (props) => {
         })
     }
 
+    let prevData = "none";
+    let rowSpanSpaces = [];
+
     for(const activity of props.activity){
-        console.log(activity);
         let time_start = new Date(activity.time_start);
         let time_end = new Date(activity.time_end);
         let date = formatDate(time_start);
+        let timeSpanOfActivity = time_end.getHours() - time_start.getHours();
+
+        //to store # of spaces needed for each activity
+        let activityExists = rowSpanSpaces.findIndex((element)=> element.name === activity.name);
+        if(activityExists === -1){
+            rowSpanSpaces.push({
+                name: activity.name,
+                space: timeSpanOfActivity
+            })
+        }
+
+        //to create the column for each day
         let dayExists = columnDefs.findIndex((element) => element.headerName === formatDate(time_start));
         if(dayExists === -1){
             columnDefs.push({
                 headerName: date, 
                 field: date,
                 cellRenderer: 'cellRenderer',
+                //determining how much each cell will be spanning
                 rowSpan: function(params) {
-                    if (params.data[this.field].length !== 0 && params.data[this.field] !== prevData) {
-                        prevData = params.data[this.field];
-                        return 2;
-                    }else if(params.data[this.field] === prevData){
-                        return 0;
+                    if (params.data[date].length !== 0 && params.data[date] !== prevData) {
+                        let indexOfSpace = rowSpanSpaces.findIndex((element)=> element.name === params.data[date]);
+                        return rowSpanSpaces[indexOfSpace].space;
                     }else{
-                        prevData = params.data[this.field];
+                        prevData = params.data[date];
                         return 1;
                     }
                 },
-                cellClassRules: { 
-                    'cell': 'value !== undefined'
+                //setting class for the divs for each cell to identify which cells are going to be spanned
+                cellClass: function(params) {
+                    if (params.data[date].length !== 0 && params.data[date] !== prevData) {
+                        prevData = params.data[date];
+                        return "cellSpan";
+                    }else{
+                        return "normCell"
+                    }
                 }
             })
             for(let i = 0; i<rowData.length; i++){
                 rowData[i][date] = "";
             }
         }
-        let timeSpanOfActivity = time_end.getHours() - time_start.getHours();
         for(let i=0; i<timeSpanOfActivity; i++){
             rowData[time_start.getHours()+i][date] = activity.name;
         }
@@ -146,7 +163,7 @@ const PlanTable = (props) => {
         className="ag-theme-balham"
         style={{
         height: '30em',
-        width: '100rem' }}>
+        width: '100vw' }}>
             <AgGridReact
                 defaultColDef={defaultColDef}
                 columnDefs={columnDefs}
