@@ -3,6 +3,7 @@ import { Row, Button } from 'reactstrap';
 import { useAuth0 } from "../react-auth0-spa";
 import { getPlan } from '../utils/apiCalls';
 import PlanCard from '../components/PlanCards';
+import { userWaitLoad } from '../utils/HelperFunc';
 
 const AllMyPlans = () =>{
   const { loading, user } = useAuth0();
@@ -16,11 +17,12 @@ const AllMyPlans = () =>{
       getPlans();
     }
   },[user])
+  
   if (!user && !loading) {
     return (
-      <div className="App">
-        <h1>Please Login to view this page.</h1>
-      </div>);
+    <div className="App">
+      <h1>Please Login to view this page.</h1>
+    </div>);
   }else if(loading){
     return (
       <div className="App">

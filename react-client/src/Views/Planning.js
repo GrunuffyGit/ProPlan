@@ -9,10 +9,11 @@ import {
 import classnames from 'classnames';
 import { useAuth0 } from "../react-auth0-spa";
 import { hasPlan, getActivities } from '../utils/apiCalls';
-import PlanTable from '../components/PlanTable';
+import ViewTab from '../components/ViewTab';
+import EditTab from '../components/EditTab';
 
 const Planning = ({match}) =>{
-  const { params: { planID } } = match;
+  const { params: { planName, planID } } = match;
   const { loading, user } = useAuth0();
   const [belongToUser, setBelongToUser] = useState();
   const [activities, setActivities] = useState();
@@ -68,7 +69,7 @@ const Planning = ({match}) =>{
 
   return(
       <div className="App">
-        <h1>{planID}</h1>
+        <h1>{planName}</h1>
           <Nav tabs>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '1' })}
@@ -83,12 +84,12 @@ const Planning = ({match}) =>{
           </Nav>
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1">
-              <PlanTable activity={activities} />
+              <ViewTab activities={activities} />
             </TabPane>
             <TabPane tabId="2">
-              <h1>Edit</h1>
+              <EditTab activities={activities}/>
             </TabPane>
-        </TabContent>
+          </TabContent>
       </div>
   );
 }

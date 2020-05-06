@@ -31,7 +31,7 @@ const PlanCard = (props) =>{
                     {description}
                 </CardText>
                 </CardBody>
-                <Button href={`/MyPlans/${id}`}>View Plan</Button>
+                <Button href={`/MyPlans/${name}/${id}`}>View Plan</Button>
             </Card>
          </Col>
     )
