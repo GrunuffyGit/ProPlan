@@ -5,8 +5,15 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import Home from './Views/Home';
 import AllMyPlans from './Views/AllMyPlans';
 import Planning from './Views/Planning';
+import { Spinner } from 'reactstrap';
+const { loading } = useAuth0();
 
 function App() {
+  if (loading) {
+    return (
+      <Spinner />
+    );
+  }
   return (
     <BrowserRouter>
         <NavBar/>

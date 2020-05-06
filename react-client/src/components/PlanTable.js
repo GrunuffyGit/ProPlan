@@ -1,7 +1,7 @@
 import React from "react";
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import { formatDate } from "../utils/HelperFunc";
 
 function createCellRenderer() {
@@ -42,7 +42,8 @@ const PlanTable = (props) => {
     //setting up the time column
     let columnDefs =[{
             headerName: "Time", 
-            field: "time"
+            field: "time",
+            width: 200,
         }
     ];
     let rowData = [];
@@ -63,6 +64,7 @@ const PlanTable = (props) => {
         })
     }
 
+    //setting up rowData
     let days = [];
     for(const activity of props.activity){
         let start = new Date(activity.time_start);
@@ -76,7 +78,6 @@ const PlanTable = (props) => {
 
             }
         }
-        console.log("rowData after adding", rowData);
         let end = new Date(activity.time_end);
         let start_hour = start.getHours();
         let end_hour = end.getHours();
@@ -87,10 +88,17 @@ const PlanTable = (props) => {
         }
     }
 
+    let cellWidth = 300;
+    if(days.length === 1){
+        cellWidth = window.screen.width-200;
+    }
+
+    //setting up column
     for(let i=0; i<days.length; i++){
         columnDefs.push({
             headerName: days[i], 
             field: days[i],
+            width: cellWidth,
             cellRenderer: 'cellRenderer',
             //determining how much each cell will be spanning
             rowSpan: function(params) {
@@ -104,6 +112,8 @@ const PlanTable = (props) => {
             cellClass: function(params) {
                 if(params.data.rowSpan[params.colDef.field]){
                     return "cellSpan";
+                }else if(params.data[params.colDef.field] !== 0){
+                    return "partCellSpan";
                 }else{
                     return "normCell";
                 }
@@ -122,26 +132,23 @@ const PlanTable = (props) => {
     };
 
     const onGridReady = params => {
-        let gridApi = params.api;
         let gridColumnApi = params.columnApi;
         gridColumnApi.setColumnPinned("time", "left");
-        gridApi.sizeColumnsToFit();
         
     }
 
     return (
         <div
-        className="ag-theme-balham"
+        className="ag-theme-material"
         style={{
         height: '30em',
-        width: '100em' }}>
+        width: '100%' }}>
             <AgGridReact
-                // defaultColDef={defaultColDef}
+                defaultColDef={defaultColDef}
                 columnDefs={columnDefs}
                 rowData={rowData}
                 components={components}
                 suppressRowTransform={true}
-                // suppressMovable={true}
                 onGridReady={onGridReady}
                 >
             </AgGridReact>
