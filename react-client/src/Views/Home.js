@@ -8,16 +8,7 @@ import {
     CardBody, 
     Row,
     Col} from "reactstrap";
-// import { Spinner } from 'reactstrap';
-// import { useAuth0 } from "../react-auth0-spa";
-// const { loading } = useAuth0();
-
 const Home = () => {
-    // if(loading){
-    //     return(
-    //         <Spinner />
-    //     );
-    // }
     return (
         <div className="App">
             <Jumbotron>

@@ -5,8 +5,13 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import Home from './Views/Home';
 import AllMyPlans from './Views/AllMyPlans';
 import Planning from './Views/Planning';
+import { useAuth0 } from './react-auth0-spa';
 
 function App() {
+  const { loading } = useAuth0();
+  if(loading){
+    return (<h1>Loading...</h1>);
+  }
   return (
     <BrowserRouter>
         <NavBar/>
