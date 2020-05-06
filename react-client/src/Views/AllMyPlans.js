@@ -3,7 +3,6 @@ import { Row, Button } from 'reactstrap';
 import { useAuth0 } from "../react-auth0-spa";
 import { getPlan } from '../utils/apiCalls';
 import PlanCard from '../components/PlanCards';
-import { userWaitLoad } from '../utils/HelperFunc';
 
 const AllMyPlans = () =>{
   const { loading, user } = useAuth0();
