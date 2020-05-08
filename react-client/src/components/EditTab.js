@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DropDown from './DropDown';
 import PlanTable from './PlanTable';
 import ActivityForm from './ActivityForm';
@@ -46,23 +46,13 @@ const getSelectedDayInPlan = (plan, daySelected) =>{
 }
 
 const EditTab = (props) => {
-    const [selectedDay, setSelectedDay] = useState("none");
+    const [selectedDay, setSelectedDay] = useState();
     const [rawSelectedDay, setRawSelectedDay] = useState();
     const [planObj, setPlanObj] = useState();
     const [currentActivities, setCurrentActivities] = useState([]);
 
-    if(typeof props.activities === "undefined" || typeof props.plan === "undefined"){
-        return(
-            <div>
-                <h1>Loading...</h1>
-            </div>
-        );
-    }
-
     let activitiesSortedByDay = [];
     let daysInPlan = [];
-    sortingDay(daysInPlan, props.plan);
-    sortingActivities(props.activities, activitiesSortedByDay);
 
     const selectDay = e => {
         setSelectedDay(e.target.id);
@@ -82,7 +72,28 @@ const EditTab = (props) => {
         props.update();
     }
 
-    if(selectedDay !== "none"){
+    useEffect(()=>{
+        if(props.activities && props.plan){
+            sortingDay(daysInPlan, props.plan);
+            sortingActivities(props.activities, activitiesSortedByDay);
+            if(selectedDay){
+                setCurrentActivities(activitiesSortedByDay[selectedDay]);
+            } 
+        }
+    },[props]);
+
+    if(typeof props.activities === "undefined" || typeof props.plan === "undefined"){
+        return(
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+
+    // sortingDay(daysInPlan, props.plan);
+    // sortingActivities(props.activities, activitiesSortedByDay);
+
+    if(selectedDay){
         return (
             <div>
                 <DropDown buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
