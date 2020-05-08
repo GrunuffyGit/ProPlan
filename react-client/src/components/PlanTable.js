@@ -21,16 +21,10 @@ function createCellRenderer() {
 }
 
 const PlanTable = (props) => {
-    if(typeof props.activity === "undefined"){
+    if(typeof props.activity === "undefined" || typeof props.plan === "undefined"){
         return(
             <div>
                 <h1>Loading...</h1>
-            </div>
-        );
-    }else if( props.activity.length === 0){
-        return(
-            <div>
-                <h1>No activity</h1>
             </div>
         );
     }
@@ -64,20 +58,37 @@ const PlanTable = (props) => {
         })
     }
 
-    //setting up rowData
+
     let days = [];
+    //grabbing days for the columns
+    let planStart = new Date(props.plan.start_date);
+    let planEnd = new Date(props.plan.end_date);
+    let planDuration = (planEnd - planStart)/(24*60*60*1000);
+    let planStartDate = planStart.getDate();
+    for(let i=0; i<=planDuration; i++){
+        let start_date = new Date (planStart);
+        start_date.setDate(planStartDate + i);
+        let formatedDate = formatDate(start_date);
+        days.push(formatedDate);
+        for(let i=0; i< rowData.length; i++){
+            rowData[i][formatedDate] = "";
+
+        }
+    }
+
+    //setting up rowData
     for(const activity of props.activity){
         let start = new Date(activity.time_start);
         let start_day = formatDate(start);
-        let day_index = days.findIndex(day => day === start_day);
-        if(day_index === -1){
-            days.push(start_day);
-            day_index = days.length -1;
-            for(let i=0; i< rowData.length; i++){
-                rowData[i][start_day] = "";
+        // let day_index = days.findIndex(day => day === start_day);
+        // if(day_index === -1){
+        //     days.push(start_day);
+        //     day_index = days.length -1;
+        //     for(let i=0; i< rowData.length; i++){
+        //         rowData[i][start_day] = "";
 
-            }
-        }
+        //     }
+        // }
         let end = new Date(activity.time_end);
         let start_hour = start.getHours();
         let end_hour = end.getHours();

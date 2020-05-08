@@ -21,7 +21,7 @@ export function createUser(userJSON){
     });
 }
 
-export function getPlan(user_id){
+export function getPlans(user_id){
     return fetch(`/plans/${user_id}`,
     {
         method: "GET"
@@ -30,8 +30,17 @@ export function getPlan(user_id){
     });
 }
 
+export function getPlan(plan_id){
+    return fetch(`/plan/${plan_id}`,
+    {
+        method: "GET"
+    }).then(res => {
+        return res.json();
+    });
+}
+
 export function createPlan(planJSON){
-    return fetch(`/plans`,
+    return fetch(`/plan`,
     {
         method: "POST",
         headers: {
@@ -62,6 +71,34 @@ export function getActivities(plan_id){
     return fetch(`/activities/${plan_id}`,
     {
         method: "GET"
+    }).then(res => {
+        return res.json();
+    });
+}
+
+export function addActivity(activityJSON){
+    return fetch(`/activities`,
+    {
+        method: "POST",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+    },
+        body: JSON.stringify(activityJSON)
+    }).then(res => {
+        return res.json();
+    });
+}
+
+export function editActivity(activityJSON){
+    return fetch(`/activities`,
+    {
+        method: "PUT",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+    },
+        body: JSON.stringify(activityJSON)
     }).then(res => {
         return res.json();
     });

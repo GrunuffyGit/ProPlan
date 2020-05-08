@@ -10,8 +10,6 @@ const DropDown = (props) => {
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
-  console.log(props);
-
   if(typeof props.ddOptions === "undefined"){
     return(
         <div>

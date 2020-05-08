@@ -5,7 +5,7 @@ const ViewTab = (props) => {
 
   return (
     <div>
-        <PlanTable activity={props.activities}/>
+        <PlanTable plan={props.plan} activity={props.activities}/>
     </div>
   );
 }

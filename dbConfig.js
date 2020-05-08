@@ -1,8 +1,9 @@
 const Pool = require('pg').Pool;
 const isProduction = process.env.NODE_ENV === "production";
-const connectionString = `postgres://localhost:5432/proplan`
+const connectionString = `postgres://localhost:5432/proplan`;
+const herokuDB = "postgres://bsfqmxmlgyvpfh:6789678c3aee5643425e0d65533e1613b8fb8862c06da36ccdc6d29970b24f72@ec2-54-147-209-121.compute-1.amazonaws.com:5432/d5c61iqif3ai8k";
 const pool = new Pool({
-    connectionString: isProduction ? process.env.DATABASE_URL : connectionString
+    connectionString: isProduction ? herokuDB : connectionString
 })
 class dbFunctions{
     addUser = function(req, res){
@@ -94,6 +95,19 @@ class dbFunctions{
         });
     }
 
+    getPlan = function(req,res){
+        const plan_id = req.params.plan_id;
+        pool.query("SELECT * FROM plans WHERE id = $1;",
+        [plan_id],
+        (error,result)=>{
+            if(error){
+                console.log(error);
+            }else{
+                res.status(200).json(result.rows);
+            }
+        });
+    }
+
     getActivities = function(req,res){
         const plan_id = req.params.plan_id;
         pool.query("SELECT * FROM activities WHERE plan_id = $1;",
@@ -121,9 +135,9 @@ class dbFunctions{
     }
 
     editActivity = function(req, res){
-        const {activity_id, update_field, value} = req.body;
-        pool.query(`UPDATE activities SET ${update_field} = $1 WHERE id = $2 RETURNING *;`,
-        [value, activity_id],
+        const {activity_id, name, location, coordinates, time_start, time_end, notes} = req.body;
+        pool.query(`UPDATE activities SET name = $1, location = $2, coordinates = $3, time_start = $4, time_end = $5, notes = $6 WHERE id = $7 RETURNING *;`,
+        [name, location, coordinates, time_start, time_end, notes, activity_id],
         (error,result)=>{
             if(error){
                 console.log(error);

@@ -11,17 +11,18 @@ app.use(express.static(path.join(__dirname, 'react-client/build')));
 
 app.get("/users/:user_id", dbFunc.hasUser);
 app.get("/plans/:user_id", dbFunc.getPlans);
+app.get("/plan/:plan_id", dbFunc.getPlan);
 app.get("/activities/:plan_id", dbFunc.getActivities);
 
 app.post("/hasPlan", dbFunc.planBelongToUser);
 app.post("/users", dbFunc.addUser);
-app.post("/plans", dbFunc.addPlan);
+app.post("/plan", dbFunc.addPlan);
 app.post("/activities", dbFunc.addActivity);
 
-app.put("/plans", dbFunc.editPlan);
+app.put("/plan", dbFunc.editPlan);
 app.put("/activities", dbFunc.editActivity);
 
-app.delete("/plans/:plan_id", dbFunc.deletePlan);
+app.delete("/plan/:plan_id", dbFunc.deletePlan);
 app.delete("/activities/:activity_id", dbFunc.deleteActivity);
 
 app.get('*', (_, res) => {

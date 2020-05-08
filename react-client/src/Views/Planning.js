@@ -8,7 +8,7 @@ import {
 } from 'reactstrap';
 import classnames from 'classnames';
 import { useAuth0 } from "../react-auth0-spa";
-import { hasPlan, getActivities } from '../utils/apiCalls';
+import { hasPlan, getActivities, getPlan } from '../utils/apiCalls';
 import ViewTab from '../components/ViewTab';
 import EditTab from '../components/EditTab';
 
@@ -17,6 +17,7 @@ const Planning = ({match}) =>{
   const { loading, user } = useAuth0();
   const [belongToUser, setBelongToUser] = useState();
   const [activities, setActivities] = useState();
+  const [plan, setPlan] = useState();
   const [activeTab, setActiveTab] = useState('1');
   const checkingPlanBelongToUser = async() =>{
     let JSONbody = {
@@ -26,10 +27,17 @@ const Planning = ({match}) =>{
     const doesBelong = await hasPlan(JSONbody);
     setBelongToUser(doesBelong[0].exists);
   }
-  const loadActivities = async() => {
+  const loadPlanAndActivities = async() => {
     const grabActivities = await getActivities(planID);
     setActivities(grabActivities);
+    const grabPlan = await getPlan(planID);
+    setPlan(grabPlan[0]);
   }
+
+  const updateActivities = e => {
+    loadPlanAndActivities();
+  }
+
   useEffect(()=>{
     if(user){
       checkingPlanBelongToUser();
@@ -38,7 +46,7 @@ const Planning = ({match}) =>{
 
   useEffect(()=>{
     if(belongToUser){
-      loadActivities();
+      loadPlanAndActivities();
     }
   },[belongToUser])
 
@@ -84,10 +92,10 @@ const Planning = ({match}) =>{
           </Nav>
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1">
-              <ViewTab activities={activities} />
+              <ViewTab plan={plan} activities={activities} />
             </TabPane>
             <TabPane tabId="2">
-              <EditTab activities={activities}/>
+              <EditTab plan={plan} activities={activities} update={updateActivities} />
             </TabPane>
           </TabContent>
       </div>
