@@ -55,6 +55,7 @@ const EditTab = (props) => {
     let daysInPlan = [];
 
     const selectDay = e => {
+        // console.log("after selection",activitiesSortedByDay);
         setSelectedDay(e.target.id);
         if(activitiesSortedByDay[e.target.id]){
             setCurrentActivities(activitiesSortedByDay[e.target.id]);
@@ -73,10 +74,14 @@ const EditTab = (props) => {
     }
 
     useEffect(()=>{
-        if(props.activities && props.plan){
-            sortingDay(daysInPlan, props.plan);
+        if(props.activities){
+            activitiesSortedByDay = [];
             sortingActivities(props.activities, activitiesSortedByDay);
+            // console.log("effect", activitiesSortedByDay);
             if(selectedDay){
+                // console.log("effect",selectedDay);
+                // console.log("effect", currentActivities);
+                // console.log("effect", activitiesSortedByDay);
                 setCurrentActivities(activitiesSortedByDay[selectedDay]);
             } 
         }
@@ -90,9 +95,11 @@ const EditTab = (props) => {
         );
     }
 
-    // sortingDay(daysInPlan, props.plan);
-    // sortingActivities(props.activities, activitiesSortedByDay);
+    sortingDay(daysInPlan, props.plan);
+    sortingActivities(props.activities, activitiesSortedByDay);
 
+    // console.log(selectedDay);
+    // console.log(currentActivities);
     if(selectedDay){
         return (
             <div>
