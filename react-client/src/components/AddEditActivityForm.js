@@ -78,6 +78,14 @@ function AddEditActivityForm (props){
         setSelectedActivity(e.target.id)
     }
 
+    if(typeof props.activity === "undefined"){
+        return(
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+
     //setting up dropdown options
     let ddOpt = [];
     for(const activity of props.activity){

@@ -82,7 +82,9 @@ const EditTab = (props) => {
                 // console.log("effect",selectedDay);
                 // console.log("effect", currentActivities);
                 // console.log("effect", activitiesSortedByDay);
-                setCurrentActivities(activitiesSortedByDay[selectedDay]);
+                if(activitiesSortedByDay[selectedDay]){
+                    setCurrentActivities(activitiesSortedByDay[selectedDay]);
+                }
             } 
         }
     },[props]);
@@ -104,7 +106,7 @@ const EditTab = (props) => {
         return (
             <div>
                 <DropDown buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
-                <h1>your selected {selectedDay}</h1>
+                <h1>You selected {selectedDay}</h1>
                 <PlanTable plan={planObj} activity={currentActivities}/>
                 <ActivityForm plan={props.plan} activity={currentActivities} update={updateActivities} day={rawSelectedDay}/>
             </div>
