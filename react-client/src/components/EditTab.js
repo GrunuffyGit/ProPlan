@@ -42,15 +42,12 @@ const getSelectedDayInPlan = (plan, daySelected) =>{
         daysArray.push(day);
     }
     let indexOfChoosenDay = daysArray.findIndex(day => day.toLocaleDateString(undefined, {weekday:"long", month:"numeric", day: "numeric"})===daySelected);
-    let dateobj = {
-        start_date: new Date(daysArray[indexOfChoosenDay]),
-        end_date: new Date(daysArray[indexOfChoosenDay])
-    }
-    return dateobj;
+    return daysArray[indexOfChoosenDay];
 }
 
 const EditTab = (props) => {
     const [selectedDay, setSelectedDay] = useState("none");
+    const [rawSelectedDay, setRawSelectedDay] = useState();
     const [planObj, setPlanObj] = useState();
     const [currentActivities, setCurrentActivities] = useState([]);
 
@@ -72,7 +69,12 @@ const EditTab = (props) => {
         if(props.activities.length !== 0){
             setCurrentActivities(activitiesSortedByDay[e.target.id]);
         }
-        setPlanObj(getSelectedDayInPlan(props.plan, e.target.id));
+        let date = getSelectedDayInPlan(props.plan, e.target.id);
+        setRawSelectedDay(date);
+        setPlanObj({
+            start_date: new Date(date),
+            end_date: new Date(date)
+        });
     }
     const updateActivities = e =>{
         props.update();
@@ -81,16 +83,16 @@ const EditTab = (props) => {
     if(selectedDay !== "none"){
         return (
             <div>
-                <DropDown onClick={selectDay} ddOptions={daysInPlan}/>
+                <DropDown buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
                 <h1>your selected {selectedDay}</h1>
                 <PlanTable plan={planObj} activity={currentActivities}/>
-                <ActivityForm plan={props.plan} activity={currentActivities} update={updateActivities}/>
+                <ActivityForm plan={props.plan} activity={currentActivities} update={updateActivities} day={rawSelectedDay}/>
             </div>
         )
     }
     return (
         <div>
-            <DropDown onClick={selectDay} ddOptions={daysInPlan}/>
+            <DropDown buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
         </div>
     );
 }

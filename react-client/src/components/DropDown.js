@@ -21,7 +21,7 @@ const DropDown = (props) => {
   return (
     <Dropdown isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>
-        Select a Day
+        {props.buttonName}
         </DropdownToggle>
       <DropdownMenu>
         {props.ddOptions.map(item =>(<DropdownItem id={item} onClick={props.onClick}>{item}</DropdownItem>))}

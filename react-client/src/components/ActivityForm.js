@@ -1,74 +1,35 @@
 import React, { useState } from "react";
-import { Button, Collapse } from "reactstrap";
+import { Button, Row, Col } from "reactstrap";
 import { addActivity, editActivity } from "../utils/apiCalls";
+import AddEditActivityForm from "./AddEditActivityForm";
 
 function ActivityForm (props){
-const [actionToActivity, setActionToActivity] = useState("none");
-const [selectedActivity, setSelectedActivity]= useState("none");
-const [addFormIsOpen, setAddFormIsOpen] = useState(false);
-const [editFormIsOpen, setEditFormIsOpen] = useState(false);
+    //true for view, false for edit
+    const [actionToActivity, setActionToActivity] = useState(true);
 
-//activityJSON states
-const [activityName, setActivityName] = useState();
-const [activityLocation, setActivityLocation] = useState();
-const [activityCoordinates, setActivityCoordinates] = useState();
-const [activityTime_Start, setActivityTime_Start] = useState();
-const [activityTime_End, setActivityTime_End] = useState();
-const [activityNotes, setActivityNotes] = useState();
-
-const update = async() => {
-    let activityJSON = {
-        activity_id: selectedActivity.id, 
-        name: activityName, 
-        location: activityLocation, 
-        coordinates: activityCoordinates, 
-        time_start: activityTime_Start, 
-        time_end: activityTime_End, 
-        notes: activityNotes
+    const toggleForm = () =>{
+        setActionToActivity(!actionToActivity);
     }
-    const updateA = await editActivity(activityJSON);
-    if(updateA()){
-        props.update();
-    }
-}
 
-const add = async() => {
-    let activityJSON = {
-        plan_id: props.plan.id, 
-        name: activityName, 
-        location: activityLocation, 
-        coordinates: activityCoordinates, 
-        time_start: activityTime_Start, 
-        time_end: activityTime_End, 
-        notes: activityNotes
-    }
-    const addA = await addActivity(activityJSON);
-    if(addA()){
-        props.update();
-    }
-}
-
-const toggleAddForm = () =>{
-    setAddFormIsOpen(!addFormIsOpen);
-}
-
-const toggleEditForm = () =>{
-    setEditFormIsOpen(!editFormIsOpen);
-}
-
-
-    if(actionToActivity === "none"){
-        return(
-            <div>
-                <Button onClick={toggleAddForm}>Add Activity</Button>
-                <Collapse isOpen={addFormIsOpen}>
-                </Collapse> 
-                <Button onClick={toggleEditForm}>Edit Activity</Button>
-                <Collapse isOpen={editFormIsOpen}>
-                </Collapse>
-            </div>
-        );
-    }
+    return(
+        <div>
+            <Row>
+                <Col>
+                    <Button onClick={toggleForm} size="lg" block>Add Activity</Button>
+                </Col>
+                <Col>
+                    <Button onClick={toggleForm}size="lg" block>Edit Activity</Button>
+                </Col>
+            </Row>
+            <AddEditActivityForm 
+                plan={props.plan} 
+                activity={props.activity} 
+                update={props.update} 
+                form={actionToActivity}
+                day={props.day}
+                />
+        </div>
+    );
 }
 
 export default ActivityForm;
