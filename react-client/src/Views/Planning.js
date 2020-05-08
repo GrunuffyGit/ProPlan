@@ -67,7 +67,7 @@ const Planning = ({match}) =>{
       </div>);
   }
 
-  if(!belongToUser){
+  if(typeof belongToUser !== "undefined" && !belongToUser){
     return(
       <div>
         <h1>This plan doesn't belong to you.</h1>
