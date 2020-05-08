@@ -32,10 +32,10 @@ function PlanForm (props){
         }
         const addP = async()=> {
             console.log(planJSON);
-            // let planCall = await addPlan(planJSON);
-            // if(planCall){
-            //     props.update();
-            // }
+            let planCall = await addPlan(planJSON);
+            if(planCall){
+                props.update();
+            }
         }
         addP();
         props.toggle();
