@@ -39,7 +39,7 @@ export function getPlan(plan_id){
     });
 }
 
-export function createPlan(planJSON){
+export function addPlan(planJSON){
     return fetch(`/plan`,
     {
         method: "POST",

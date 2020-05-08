@@ -3,10 +3,16 @@ import { Row, Button } from 'reactstrap';
 import { useAuth0 } from "../react-auth0-spa";
 import { getPlans } from '../utils/apiCalls';
 import PlanCard from '../components/PlanCards';
+import PlanForm from '../components/PlanForm';
 
 const AllMyPlans = () =>{
   const { loading, user } = useAuth0();
   const [plans, setPlans] = useState();
+  const [modal, setModal] = useState(false);
+  
+  const openModal = () => {
+    setModal(!modal);
+  }
   const getAllPlans = async() => {
     const getPlansCall = await getPlans(user.sub);
     setPlans(getPlansCall);
@@ -32,7 +38,8 @@ const AllMyPlans = () =>{
   return(
     <div className="App">
       <h1> My Plans </h1>
-      <Button size="lg"> Create Plan</Button>
+      <Button size="lg" onClick={openModal}> Create Plan</Button>
+      <PlanForm user={user} update={getAllPlans} isModalOpen={modal} toggle={openModal}/>
       <Row>
         {plans ? plans.map(plan =>(<PlanCard key={plan.id} plan={plan}/>)): "No Plans"}
       </Row>
