@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DropDown from './DropDown';
 import PlanTable from './PlanTable';
 import ActivityForm from './ActivityForm';
@@ -50,20 +50,7 @@ const EditTab = (props) => {
     const [rawSelectedDay, setRawSelectedDay] = useState();
     const [planObj, setPlanObj] = useState();
     const [currentActivities, setCurrentActivities] = useState([]);
-
-    if(typeof props.activities === "undefined" || typeof props.plan === "undefined"){
-        return(
-            <div>
-                <h1>Loading...</h1>
-            </div>
-        );
-    }
-
-    let activitiesSortedByDay = [];
-    let daysInPlan = [];
-    sortingDay(daysInPlan, props.plan);
-    sortingActivities(props.activities, activitiesSortedByDay);
-
+    
     const selectDay = e => {
         setSelectedDay(e.target.id);
         if(props.activities.length !== 0){
@@ -79,6 +66,20 @@ const EditTab = (props) => {
     const updateActivities = e =>{
         props.update();
     }
+
+    let activitiesSortedByDay = [];
+    let daysInPlan = [];
+
+    if(typeof props.activities === "undefined" || typeof props.plan === "undefined"){
+        return(
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
+
+    sortingDay(daysInPlan, props.plan);
+    sortingActivities(props.activities, activitiesSortedByDay);
 
     if(selectedDay !== "none"){
         return (

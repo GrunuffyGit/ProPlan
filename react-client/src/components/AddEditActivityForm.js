@@ -9,14 +9,15 @@ function AddEditActivityForm (props){
     const [selectedActivity, setSelectedActivity]= useState();
     //activityJSON states
     const [activityName, setActivityName] = useState();
-    const [activityLocation, setActivityLocation] = useState();
-    const [activityCoordinates, setActivityCoordinates] = useState();
+    const [activityLocation, setActivityLocation] = useState(null);
+    const [activityCoordinates, setActivityCoordinates] = useState(null);
     const [activityTime_Start, setActivityTime_Start] = useState();
     const [activityTime_End, setActivityTime_End] = useState();
-    const [activityNotes, setActivityNotes] = useState();
+    const [activityNotes, setActivityNotes] = useState(null);
 
 
-    const update = async() => {
+    const update = async(e) => {
+        e.preventDefault();
         let activityJSON = {
             activity_id: selectedActivity.id, 
             name: activityName, 
@@ -27,12 +28,13 @@ function AddEditActivityForm (props){
             notes: activityNotes
         }
         const updateA = await editActivity(activityJSON);
-        if(updateA()){
+        if(updateA){
             props.update();
         }
     }
 
-    const add = async() => {
+    const add = e => {
+        e.preventDefault();
         let activityJSON = {
             plan_id: props.plan.id, 
             name: activityName, 
@@ -42,10 +44,23 @@ function AddEditActivityForm (props){
             time_end: activityTime_End, 
             notes: activityNotes
         }
-        const addA = await addActivity(activityJSON);
-        if(addA()){
-            props.update();
+        const addA = async()=> {
+            let actCall = await addActivity(activityJSON);
+            if(actCall){
+                props.update();
+            }
         }
+        addA();
+    }
+
+    const handleNameChange = (e) =>{
+        setActivityName(e.target.value);
+    }
+    const handleLocationChange = (e) =>{
+        setActivityLocation(e.target.value);
+    }
+    const handleNoteChange = (e) =>{
+        setActivityNotes(e.target.value);
     }
 
     const clockChange = e => {
@@ -69,17 +84,16 @@ function AddEditActivityForm (props){
         ddOpt.push(activity.name);
     }
 
-    console.log(ddOpt);
     if(props.form){
         return(
-            <Form>
+            <Form onSubmit={add}>
                 <FormGroup>
                     <Label>Activity Name</Label>
-                    <Input type="text"></Input>
+                    <Input type="text" onChange={handleNameChange} required></Input>
                 </FormGroup>
                 <FormGroup>
                     <Label>Location</Label>
-                    <Input type="text"></Input>
+                    <Input type="text" onChange={handleLocationChange}></Input>
                 </FormGroup>
                 <FormGroup>
                     <Label>Time Duration</Label>
@@ -87,13 +101,13 @@ function AddEditActivityForm (props){
                         maxDetail="hour"
                         disableClock={true}
                         onChange={clockChange}
-                        required={true}
                     />
                 </FormGroup>
                 <FormGroup>
                     <Label>Notes</Label>
-                    <Input type="text"></Input>
+                    <Input type="text" onChange={handleNoteChange}></Input>
                 </FormGroup>
+                <Button>Add!</Button>
             </Form>
         );
     }
