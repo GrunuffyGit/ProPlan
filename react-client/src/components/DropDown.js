@@ -19,7 +19,7 @@ const DropDown = (props) => {
   }
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+    <Dropdown id="selectDayBtn" isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret>
         {props.buttonName}
         </DropdownToggle>

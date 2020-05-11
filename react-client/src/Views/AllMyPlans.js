@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Row, Button } from 'reactstrap';
+import { Row, Button, Col } from 'reactstrap';
 import { useAuth0 } from "../react-auth0-spa";
 import { getPlans } from '../utils/apiCalls';
 import PlanCard from '../components/PlanCards';
@@ -37,10 +37,16 @@ const AllMyPlans = () =>{
   
   return(
     <div className="App">
-      <h1> My Plans </h1>
-      <Button size="lg" onClick={openModal}> Create Plan</Button>
+      <Row id="allPlansHeader">
+        <Col>
+          <h1 id="allPlanHeader"> My Plans </h1>
+        </Col>
+        <Col>
+          <Button id="createPlanBtn" size="lg" onClick={openModal}> Create Plan</Button>
+        </Col>
+      </Row>
       <PlanForm user={user} update={getAllPlans} isModalOpen={modal} toggle={openModal}/>
-      <Row>
+      <Row id="planCardRow">
         {plans ? plans.map(plan =>(<PlanCard key={plan.id} plan={plan} update={getAllPlans}/>)): "No Plans"}
       </Row>
     </div>

@@ -77,16 +77,16 @@ const Planning = ({match}) =>{
 
   return(
       <div className="App">
-        <h1>{planName}</h1>
+        <h1 id="planNameHeader">{planName}</h1>
           <Nav tabs>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '1' })}
-              onClick={() => { toggle('1'); }}>View Plan
+              onClick={() => { toggle('1'); }}>View Entire Plan
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '2' })}
-              onClick={() => { toggle('2'); }}>Edit Plan
+              onClick={() => { toggle('2'); }}>View Activities
               </NavLink>
             </NavItem>
           </Nav>

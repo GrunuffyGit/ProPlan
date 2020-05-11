@@ -23,6 +23,57 @@ h2{
   margin: 5rem;
 }
 
+#allPlansHeader{
+  padding-left: 2em;
+  padding-top: 2em;
+  padding-bottom: 1em;
+}
+
+#createPlanBtn{
+  position: relative !important;
+  top: 45%;
+  left: 20%;
+  font-size: 1.5em;
+}
+
+#allPlanHeader{
+  font-size: 7.25em;
+  text-align: left;
+}
+
+#planCardRow{
+  padding-right: 3em;
+  padding-left: 3em;
+}
+
+#planCard{
+  padding: 2em;
+}
+
+#planCardBtnRow{
+  padding-bottom: 1em;
+}
+
+#planNameHeader{
+  padding: .5em;
+  font-size: 5em;
+}
+#selectDayHeader{
+  padding-top: 1em;
+}
+
+#selectDayBtn{
+  padding: 2em;
+}
+
+#addActivityForm{
+  padding-top: 3em;
+}
+
+#saveActBtn{
+  margin-bottom: 2em;
+}
+
 .cellSpan{
   background: rgb(150, 203, 235);
   border-left: 1px solid  rgb(144, 194, 226) !important;

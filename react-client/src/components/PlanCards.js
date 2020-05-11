@@ -24,7 +24,7 @@ const PlanCard = (props) =>{
     stop_date = stop_date.toDateString();
 
     return(
-        <Col xs="4">
+        <Col xs="4" id="planCard">
             <Card>
                 <CardImg
                 className="planImage"
@@ -38,7 +38,7 @@ const PlanCard = (props) =>{
                     {description}
                 </CardText>
                 </CardBody>
-                <Row>
+                <Row id="planCardBtnRow">
                     <Col>
                         <Button href={`/MyPlans/${name}/${id}`}>View Plan</Button>
                     </Col>
@@ -46,7 +46,7 @@ const PlanCard = (props) =>{
                         <Button onClick={openModal}>Edit Plan</Button>
                         <EditPlanForm plan={props.plan} toggle={openModal} isModalOpen={modal} update={props.update}/>
                     </Col>
-            </Row>
+                </Row>
             </Card>
          </Col>
     )

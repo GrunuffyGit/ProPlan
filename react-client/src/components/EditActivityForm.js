@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
-import { Col, Row, Button, Form, FormGroup, Label, Input} from "reactstrap";
+import { Button, Form, FormGroup, Label, Input} from "reactstrap";
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
 import { editActivity } from "../utils/apiCalls";
 
-function EditFormSelection (props) {
+function EditActivityForm (props) {
     console.log(props);
     const [activityName, setActivityName] = useState(props.activityToEdit.name);
     const [activityLocation, setActivityLocation] = useState(props.activityToEdit.location);
@@ -91,6 +91,7 @@ function EditFormSelection (props) {
             </FormGroup>
             <FormGroup>
                 <Label>Time Duration</Label>
+                <div />
                 <TimeRangePicker
                     maxDetail="hour"
                     disableClock={true}
@@ -102,9 +103,9 @@ function EditFormSelection (props) {
                 <Label>Notes</Label>
                 <Input type="text" onChange={handleNoteChange} value={activityNotes}></Input>
             </FormGroup>
-            <Button>Save Changes</Button>
+            <Button id="saveActBtn">Save Changes</Button>
         </Form>
     )
 }
 
-export default EditFormSelection;
+export default EditActivityForm;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DropDown from './DropDown';
 import PlanTable from './PlanTable';
 import ActivityForm from './ActivityForm';
+import { Row, Col } from 'reactstrap';
 
 const sortingActivities = (activiesToSort, sortedActivityArray) => {
     let formatArray = [];
@@ -105,15 +106,22 @@ const EditTab = (props) => {
     if(selectedDay){
         return (
             <div>
-                <DropDown buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
-                <h1>You selected {selectedDay}</h1>
-                <PlanTable plan={planObj} activity={currentActivities}/>
-                <ActivityForm plan={props.plan} activity={currentActivities} update={updateActivities} day={rawSelectedDay}/>
+                <DropDown buttonName="Select a New Day" onClick={selectDay} ddOptions={daysInPlan}/>
+                <Row>
+                    <Col id="tableContainer">
+                        <PlanTable plan={planObj} activity={currentActivities}/>
+                    </Col>
+                    <Col>
+                        <ActivityForm plan={props.plan} activity={currentActivities} update={updateActivities} day={rawSelectedDay}/>
+                    </Col>
+                </Row>
+                
             </div>
         )
     }
     return (
         <div>
+            <h1 id="selectDayHeader">Select a day to view and edit your activities!</h1>
             <DropDown buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
         </div>
     );

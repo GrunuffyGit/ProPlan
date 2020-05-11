@@ -101,7 +101,7 @@ const PlanTable = (props) => {
 
     let cellWidth = 300;
     if(days.length === 1){
-        cellWidth = window.screen.width-200;
+        cellWidth = (window.screen.width/2)-230;
     }
 
     //setting up column
@@ -152,7 +152,7 @@ const PlanTable = (props) => {
         <div
         className="ag-theme-material"
         style={{
-        height: '30em',
+        height: '38em',
         width: '100%' }}>
             <AgGridReact
                 defaultColDef={defaultColDef}

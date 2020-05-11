@@ -1,33 +1,50 @@
 import React, { useState } from "react";
-import { Button, Row, Col } from "reactstrap";
-import { addActivity, editActivity } from "../utils/apiCalls";
-import AddEditActivityForm from "./AddEditActivityForm";
+import {
+    Nav,
+    NavItem,
+    NavLink,
+    TabContent,
+    TabPane
+} from "reactstrap";
+import classnames from 'classnames';
+import AddActivityForm from "./AddActivityForm";
+import EditActivity from "./EditActivity";
 
 function ActivityForm (props){
-    //true for view, false for edit
-    const [actionToActivity, setActionToActivity] = useState(true);
+    const [activeTab, setActiveTab] = useState('1');
 
-    const toggleForm = () =>{
-        setActionToActivity(!actionToActivity);
+    const toggle = tab => {
+        if(activeTab !== tab) setActiveTab(tab);
     }
 
     return(
         <div>
-            <Row>
-                <Col>
-                    <Button onClick={toggleForm} size="lg" block>Add Activity</Button>
-                </Col>
-                <Col>
-                    <Button onClick={toggleForm}size="lg" block>Edit Activity</Button>
-                </Col>
-            </Row>
-            <AddEditActivityForm 
-                plan={props.plan} 
-                activity={props.activity} 
-                update={props.update} 
-                form={actionToActivity}
-                day={props.day}
-                />
+            <Nav tabs>
+            <NavItem>
+              <NavLink className={classnames({ active: activeTab === '1' })}
+              onClick={() => { toggle('1'); }}>Add Activity
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className={classnames({ active: activeTab === '2' })}
+              onClick={() => { toggle('2'); }}>Edit an Activity
+              </NavLink>
+            </NavItem>
+          </Nav>
+          <TabContent activeTab={activeTab}>
+            <TabPane tabId="1">
+                <AddActivityForm 
+                    plan={props.plan}
+                    update={props.update}
+                    day={props.day}/>
+            </TabPane>
+            <TabPane tabId="2">
+                <EditActivity
+                    activity={props.activity} 
+                    update={props.update} 
+                    day={props.day} />
+            </TabPane>
+          </TabContent>
         </div>
     );
 }
