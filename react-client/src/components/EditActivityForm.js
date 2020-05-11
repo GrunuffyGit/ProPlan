@@ -80,7 +80,7 @@ function EditActivityForm (props) {
     }
     
     return(
-        <Form onSubmit={edit}>
+        <Form onSubmit={edit} id="editActivityForm">
             <FormGroup>
                 <Label>Activity Name</Label>
                 <Input type="text" onChange={handleNameChange} value={activityName} required></Input>
@@ -101,7 +101,7 @@ function EditActivityForm (props) {
             </FormGroup>
             <FormGroup>
                 <Label>Notes</Label>
-                <Input type="text" onChange={handleNoteChange} value={activityNotes}></Input>
+                <Input type="textarea" onChange={handleNoteChange} value={activityNotes}></Input>
             </FormGroup>
             <Button id="saveActBtn">Save Changes</Button>
         </Form>

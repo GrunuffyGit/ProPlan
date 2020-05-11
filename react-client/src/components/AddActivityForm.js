@@ -76,7 +76,7 @@ function AddActivityForm (props){
             </FormGroup>
             <FormGroup>
                 <Label>Notes</Label>
-                <Input type="text" onChange={handleNoteChange}></Input>
+                <Input type="textarea" onChange={handleNoteChange}></Input>
             </FormGroup>
             <Button>Add New Activity</Button>
         </Form>

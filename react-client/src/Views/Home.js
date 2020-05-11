@@ -21,11 +21,11 @@ const Home = () => {
                 Whether you are creating a schedule for an event, a work trip, or a vocation, ProPlan can help give you a better understanding of what you are trying to accomplish.
             </p>
             <h2>Features</h2>
-                <Row>
+                <Row id="featureRow">
                     <Col>
                         <Card>
                             <CardBody>
-                                <CardImg top  src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
+                                <CardImg  className="features" top  src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
                                 <CardTitle>
                                     Feature 1
                                 </CardTitle>
@@ -38,7 +38,7 @@ const Home = () => {
                     <Col>
                         <Card>
                             <CardBody>
-                                <CardImg top src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
+                                <CardImg className="features" top src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
                                 <CardTitle>
                                     Feature 2
                                 </CardTitle>
@@ -51,7 +51,7 @@ const Home = () => {
                     <Col>
                         <Card>
                             <CardBody>
-                                <CardImg top src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
+                                <CardImg className="features" top src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
                                 <CardTitle>
                                     Feature 3
                                 </CardTitle>

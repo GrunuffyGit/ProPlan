@@ -23,6 +23,17 @@ h2{
   margin: 5rem;
 }
 
+.features{
+  height: auto;
+  width: 50%;
+}
+
+#featureRow{
+padding-bottom: 2em;
+padding-right: 5em;
+padding-left: 5em;
+}
+
 #allPlansHeader{
   padding-left: 2em;
   padding-top: 2em;
@@ -68,6 +79,13 @@ h2{
 
 #addActivityForm{
   padding-top: 3em;
+  margin-left: 5em;
+  margin-right: 5em;
+}
+
+#editActivityForm{
+  margin-left: 5em;
+  margin-right: 5em;
 }
 
 #saveActBtn{
