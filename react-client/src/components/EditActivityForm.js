@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Button, Form, FormGroup, Label, Input} from "reactstrap";
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
-import { editActivity } from "../utils/apiCalls";
+import { editActivity, deleteActivity } from "../utils/apiCalls";
 
 function EditActivityForm (props) {
     console.log(props);
@@ -57,6 +57,14 @@ function EditActivityForm (props) {
         }
     }
 
+    const deleteCurrentActivity = async(e) => {
+        e.preventDefault();
+        const deleteA = await deleteActivity(props.activityToEdit.id);
+        if(deleteA){
+            props.update();
+        }
+    }
+
     const clockChange = e => {
         console.log(e);
         if(e[0]){
@@ -80,7 +88,7 @@ function EditActivityForm (props) {
     }
     
     return(
-        <Form onSubmit={edit} id="editActivityForm">
+        <Form id="editActivityForm">
             <FormGroup>
                 <Label>Activity Name</Label>
                 <Input type="text" onChange={handleNameChange} value={activityName} required></Input>
@@ -103,7 +111,8 @@ function EditActivityForm (props) {
                 <Label>Notes</Label>
                 <Input type="textarea" onChange={handleNoteChange} value={activityNotes}></Input>
             </FormGroup>
-            <Button id="saveActBtn">Save Changes</Button>
+            <Button id="deleteActBtn" onClick={deleteCurrentActivity}>Delete Activity</Button>
+            <Button id="saveActBtn" onClick={edit}>Save Changes</Button>
         </Form>
     )
 }

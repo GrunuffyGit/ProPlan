@@ -11,7 +11,7 @@ import {
     Input,     
     Col
 } from 'reactstrap';
-import { editPlan } from "../utils/apiCalls";
+import { editPlan, deletePlan } from "../utils/apiCalls";
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
 
@@ -38,6 +38,15 @@ function EditPlanForm (props){
             }
         }
         editP();
+        props.toggle();
+    }
+
+    const deleteCurrentPlan = async(e) =>{
+        e.preventDefault();
+        let deleteCall = await deletePlan(props.plan.id);
+        if(deleteCall){
+            window.location.reload();
+        }
         props.toggle();
     }
     const handleNameChange = (e) =>{
@@ -80,6 +89,7 @@ function EditPlanForm (props){
                 </Form>
             </ModalBody>
             <ModalFooter>
+            <Button id="deleteBtn" color="primary" onClick={deleteCurrentPlan}>Delete</Button>{' '}
             <Button color="primary" onClick={edit}>Edit</Button>{' '}
             <Button color="secondary" onClick={props.toggle}>Cancel</Button>
             </ModalFooter>

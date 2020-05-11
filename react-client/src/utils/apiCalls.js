@@ -67,6 +67,15 @@ export function editPlan(planJSON){
     });
 }
 
+export function deletePlan(plan_id){
+    return fetch(`/plan/${plan_id}`,
+    {
+        method: "DELETE"
+    }).then(res => {
+        return res;
+    });
+}
+
 export function hasPlan(verifyJSON){
     return fetch(`/hasPlan`,
     {
@@ -115,5 +124,14 @@ export function editActivity(activityJSON){
         body: JSON.stringify(activityJSON)
     }).then(res => {
         return res.json();
+    });
+}
+
+export function deleteActivity(activity_id){
+    return fetch(`/activities/${activity_id}`,
+    {
+        method: "DELETE"
+    }).then(res => {
+        return res;
     });
 }
