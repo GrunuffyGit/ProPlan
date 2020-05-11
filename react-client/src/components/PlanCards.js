@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { 
+    Row,
     Card,
     CardImg, 
     CardTitle, 
@@ -8,8 +9,14 @@ import {
     Col,
     CardSubtitle,
     Button} from 'reactstrap';
+import EditPlanForm from './EditPlanForm';
 
 const PlanCard = (props) =>{
+    const [modal, setModal] = useState(false);
+    const openModal = () => {
+        setModal(!modal);
+    }
+
     const {id, name, description, image_url, start_date, end_date} = props.plan;
     let begin_date = new Date (start_date);
     begin_date  = begin_date.toDateString();
@@ -31,7 +38,15 @@ const PlanCard = (props) =>{
                     {description}
                 </CardText>
                 </CardBody>
-                <Button href={`/MyPlans/${name}/${id}`}>View Plan</Button>
+                <Row>
+                    <Col>
+                        <Button href={`/MyPlans/${name}/${id}`}>View Plan</Button>
+                    </Col>
+                    <Col>
+                        <Button onClick={openModal}>Edit Plan</Button>
+                        <EditPlanForm plan={props.plan} toggle={openModal} isModalOpen={modal} update={props.update}/>
+                    </Col>
+            </Row>
             </Card>
          </Col>
     )

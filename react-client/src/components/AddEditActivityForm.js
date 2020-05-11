@@ -16,22 +16,23 @@ function AddEditActivityForm (props){
     const [activityNotes, setActivityNotes] = useState(null);
 
 
-    const update = async(e) => {
-        e.preventDefault();
-        let activityJSON = {
-            activity_id: selectedActivity.id, 
-            name: activityName, 
-            location: activityLocation, 
-            coordinates: activityCoordinates, 
-            time_start: activityTime_Start, 
-            time_end: activityTime_End, 
-            notes: activityNotes
-        }
-        const updateA = await editActivity(activityJSON);
-        if(updateA){
-            props.update();
-        }
-    }
+    // const update = async(e) => {
+    //     e.preventDefault();
+    //     let activityJSON = {
+    //         activity_id: selectedActivity.id, 
+    //         name: activityName, 
+    //         location: activityLocation, 
+    //         coordinates: activityCoordinates, 
+    //         time_start: activityTime_Start, 
+    //         time_end: activityTime_End, 
+    //         notes: activityNotes
+    //     }
+        
+    //     const updateA = await editActivity(activityJSON);
+    //     if(updateA){
+    //         props.update();
+    //     }
+    // }
 
     const add = e => {
         e.preventDefault();
@@ -64,6 +65,7 @@ function AddEditActivityForm (props){
     }
 
     const clockChange = e => {
+        console.log(e);
         let time = new Date(props.day);
         if(e[0]){
             time.setHours(e[0].substr(0,2));
@@ -75,7 +77,7 @@ function AddEditActivityForm (props){
     }
 
     const activityToEdit = e =>{
-        setSelectedActivity(e.target.id)
+        setSelectedActivity(e.target.id);
     }
 
     if(typeof props.activity === "undefined"){
@@ -121,13 +123,15 @@ function AddEditActivityForm (props){
     }
     if(selectedActivity){
         let indexOfActivity = props.activity.findIndex(act => act.name === selectedActivity);
-        return(
-            <div>
-                <DropDown buttonName="Select an Activity" ddOptions={ddOpt} onClick={activityToEdit}/>
-                <EditFormSelection activityToEdit={props.activity[indexOfActivity]}/>
-            </div>
-            
-        );
+        if(indexOfActivity > -1){
+            return(
+                <div>
+                    <DropDown buttonName="Select an Activity" ddOptions={ddOpt} onClick={activityToEdit}/>
+                    <EditFormSelection day={props.day} update={props.update} selectedActivity={selectedActivity} activityToEdit={props.activity[indexOfActivity]}/>
+                </div>
+                
+            );
+        }
     }
     return(
         <div>

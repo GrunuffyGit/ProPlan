@@ -41,7 +41,7 @@ const AllMyPlans = () =>{
       <Button size="lg" onClick={openModal}> Create Plan</Button>
       <PlanForm user={user} update={getAllPlans} isModalOpen={modal} toggle={openModal}/>
       <Row>
-        {plans ? plans.map(plan =>(<PlanCard key={plan.id} plan={plan}/>)): "No Plans"}
+        {plans ? plans.map(plan =>(<PlanCard key={plan.id} plan={plan} update={getAllPlans}/>)): "No Plans"}
       </Row>
     </div>
   );

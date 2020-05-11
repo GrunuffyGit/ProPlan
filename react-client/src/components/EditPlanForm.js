@@ -11,34 +11,33 @@ import {
     Input,     
     Col
 } from 'reactstrap';
-import { addPlan } from "../utils/apiCalls";
+import { editPlan } from "../utils/apiCalls";
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 
 
-function PlanForm (props){
-    const [name, setName] = useState();
-    const [description, setDescription] = useState(null);
-    const [imageURL, setimageURL] = useState(null);
-    const [dates, setDates] = useState([new Date(), new Date()]);
+function EditPlanForm (props){
+    const [name, setName] = useState(props.plan.name);
+    const [description, setDescription] = useState(props.plan.description);
+    const [imageURL, setimageURL] = useState(props.plan.image_url);
+    const [dates, setDates] = useState([new Date(props.plan.start_date), new Date(props.plan.end_date)]);
 
-    const add = e => {
+    const edit = e => {
         e.preventDefault();
         let planJSON = {
-            created_by: props.user.sub,
+            plan_id: props.plan.id,
             name: name, 
             description: description, 
             image_url: imageURL, 
             start_date: dates[0], 
             end_date: dates[1]
         }
-        const addP = async()=> {
-            console.log(planJSON);
-            let planCall = await addPlan(planJSON);
+        const editP = async()=> {
+            let planCall = await editPlan(planJSON)
             if(planCall){
                 props.update();
             }
         }
-        addP();
+        editP();
         props.toggle();
     }
     const handleNameChange = (e) =>{
@@ -51,18 +50,17 @@ function PlanForm (props){
         setimageURL(e.target.value);
     }
     const handleDateChange = (e) =>{
-        console.log(e);
         setDates(e);
     }
 
     return(
         <Modal isOpen={props.isModalOpen} toggle={props.toggle}>
-        <ModalHeader toggle={props.toggle}>Create a Plan!</ModalHeader>
+            <ModalHeader toggle={props.toggle}>Edit Plan</ModalHeader>
             <ModalBody>
                 <Form>
                     <FormGroup>
                         <Label>Plan Name</Label>
-                        <Input type="text" onChange={handleNameChange} required></Input>
+                        <Input type="text" onChange={handleNameChange} value={name} required></Input>
                     </FormGroup>
                     <FormGroup>
                         <Label>Dates</Label>{"  "}
@@ -73,20 +71,20 @@ function PlanForm (props){
                     </FormGroup>
                     <FormGroup>
                         <Label>Image URL</Label>
-                        <Input type="text" onChange={handleImageURLChange}></Input>
+                        <Input type="text" onChange={handleImageURLChange} value={imageURL}></Input>
                     </FormGroup>
                     <FormGroup>
                         <Label>Description</Label>
-                        <Input type="textarea" onChange={handleDescriptionChange}></Input>
+                        <Input type="textarea" onChange={handleDescriptionChange} value={description}></Input>
                     </FormGroup>
                 </Form>
             </ModalBody>
             <ModalFooter>
-            <Button color="primary" onClick={add}>Create</Button>{' '}
+            <Button color="primary" onClick={edit}>Edit</Button>{' '}
             <Button color="secondary" onClick={props.toggle}>Cancel</Button>
             </ModalFooter>
         </Modal>
     );
 }
 
-export default PlanForm;
+export default EditPlanForm;

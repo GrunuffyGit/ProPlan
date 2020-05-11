@@ -53,6 +53,20 @@ export function addPlan(planJSON){
     });
 }
 
+export function editPlan(planJSON){
+    return fetch(`/plan`,
+    {
+        method: "PUT",
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+    },
+        body: JSON.stringify(planJSON)
+    }).then(res => {
+        return res.json();
+    });
+}
+
 export function hasPlan(verifyJSON){
     return fetch(`/hasPlan`,
     {

@@ -122,9 +122,17 @@ class dbFunctions{
     }
 
     editPlan = function(req,res){
-        const {plan_id, update_field, value} = req.body;
-        pool.query(`UPDATE plans SET ${update_field} = $1 WHERE id = $2 RETURNING *;`,
-        [value, plan_id],
+        let {plan_id, name, description, image_url, start_date, end_date} = req.body; 
+        start_date = new Date (start_date);
+        end_date = new Date (end_date);
+        if(description === null){
+            description = "No Description";
+        }
+        if(image_url === null){
+            image_url = "https://data.whicdn.com/images/59987907/original.png";
+        }
+        pool.query(`UPDATE plans SET name = $1, description = $2, image_url = $3, start_date = $4, end_date = $5 WHERE id = $6 RETURNING *;`,
+        [name, description, image_url, start_date, end_date, plan_id],
         (error,result)=>{
             if(error){
                 console.log(error);
@@ -135,7 +143,12 @@ class dbFunctions{
     }
 
     editActivity = function(req, res){
-        const {activity_id, name, location, coordinates, time_start, time_end, notes} = req.body;
+        console.log("req",req.body);
+        let {activity_id, name, location, coordinates, time_start, time_end, notes} = req.body;
+        time_start = new Date (time_start);
+        time_end = new Date (time_end);
+        console.log(time_start);
+        console.log(time_end);
         pool.query(`UPDATE activities SET name = $1, location = $2, coordinates = $3, time_start = $4, time_end = $5, notes = $6 WHERE id = $7 RETURNING *;`,
         [name, location, coordinates, time_start, time_end, notes, activity_id],
         (error,result)=>{

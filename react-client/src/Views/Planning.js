@@ -28,7 +28,6 @@ const Planning = ({match}) =>{
     setBelongToUser(doesBelong[0].exists);
   }
   const loadPlanAndActivities = async() => {
-    console.log("s");
     const grabActivities = await getActivities(planID);
     setActivities(grabActivities);
     const grabPlan = await getPlan(planID);
