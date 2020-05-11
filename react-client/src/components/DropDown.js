@@ -13,7 +13,7 @@ const DropDown = (props) => {
   if(typeof props.ddOptions === "undefined"){
     return(
         <div>
-            <h1>Loading...</h1>
+            <img className="loadingImg" src="https://steamuserimages-a.akamaihd.net/ugc/779615184453193381/6545C065131A71752DEC0EB8EFF64A166177DCFD/"></img>
         </div>
     );
   }
