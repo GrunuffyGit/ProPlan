@@ -27,7 +27,7 @@ const Home = () => {
                             <CardBody>
                                 <CardImg  className="features" top  src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
                                 <CardTitle>
-                                    Feature 1
+                                    Plan Creation
                                 </CardTitle>
                                 <CardText>
                                     cardtext
@@ -40,7 +40,7 @@ const Home = () => {
                             <CardBody>
                                 <CardImg className="features" top src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
                                 <CardTitle>
-                                    Feature 2
+                                    Visualize
                                 </CardTitle>
                                 <CardText>
                                     cardtext
@@ -53,7 +53,7 @@ const Home = () => {
                             <CardBody>
                                 <CardImg className="features" top src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
                                 <CardTitle>
-                                    Feature 3
+                                    Add Activities
                                 </CardTitle>
                                 <CardText>
                                     cardtext
