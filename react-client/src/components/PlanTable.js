@@ -24,7 +24,7 @@ const PlanTable = (props) => {
     if(typeof props.activity === "undefined" || typeof props.plan === "undefined"){
         return(
             <div>
-                <img className="loadingImg" src="https://steamuserimages-a.akamaihd.net/ugc/779615184453193381/6545C065131A71752DEC0EB8EFF64A166177DCFD/f"></img>
+                <img className="loadingImg" src="https://steamuserimages-a.akamaihd.net/ugc/779615184453193381/6545C065131A71752DEC0EB8EFF64A166177DCFD/"></img>
             </div>
         );
     }

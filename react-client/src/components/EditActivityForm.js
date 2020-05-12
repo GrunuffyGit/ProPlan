@@ -31,9 +31,6 @@ function EditActivityForm (props) {
     const handleNameChange = (e) =>{
         setActivityName(e.target.value);
     }
-    const handleLocationChange = (e) =>{
-        setActivityLocation(e.target.value);
-    }
     const handleNoteChange = (e) =>{
         setActivityNotes(e.target.value);
     }
@@ -86,6 +83,27 @@ function EditActivityForm (props) {
             // console.log("timeend after",time2);
         }
     }
+
+    let autocomplete;
+
+    const google = window.google;
+
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(document.getElementById('autoLocationEdit'));
+        autocomplete.setFields(['formatted_address', 'geometry']);
+        autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    async function fillInAddress() {
+        let place = await autocomplete.getPlace();
+        if(place.name){
+            setActivityLocation(place.name);
+            setActivityCoordinates(null);
+        }else{
+            setActivityLocation(place.formatted_address);
+            setActivityCoordinates(place.geometry.location.toString());
+        }
+    }
     
     return(
         <Form id="editActivityForm">
@@ -95,7 +113,10 @@ function EditActivityForm (props) {
             </FormGroup>
             <FormGroup>
                 <Label>Location</Label>
-                <Input type="text" onChange={handleLocationChange} value={activityLocation}></Input>
+                <Input type="text" 
+                id="autoLocationEdit"
+                placeholder={activityLocation}
+                onFocus={initAutocomplete}></Input>
             </FormGroup>
             <FormGroup>
                 <Label>Time Duration</Label>

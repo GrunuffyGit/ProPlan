@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input} from "reactstrap";
-import { addActivity} from "../utils/apiCalls";
+import { addActivity, getCoordinates} from "../utils/apiCalls";
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
 
 function AddActivityForm (props){
@@ -36,9 +36,7 @@ function AddActivityForm (props){
     const handleNameChange = (e) =>{
         setActivityName(e.target.value);
     }
-    const handleLocationChange = (e) =>{
-        setActivityLocation(e.target.value);
-    }
+
     const handleNoteChange = (e) =>{
         setActivityNotes(e.target.value);
     }
@@ -55,6 +53,27 @@ function AddActivityForm (props){
         }
     }
 
+    let autocomplete;
+
+    const google = window.google;
+
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(document.getElementById('autoLocationAdd'));
+        autocomplete.setFields(['formatted_address', 'geometry']);
+        autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    async function fillInAddress() {
+        let place = await autocomplete.getPlace();
+        if(place.name){
+            setActivityLocation(place.name);
+            setActivityCoordinates(null);
+        }else{
+            setActivityLocation(place.formatted_address);
+            setActivityCoordinates(place.geometry.location.toString());
+        }
+    }
+
     return(
         <Form onSubmit={add} id="addActivityForm">
             <FormGroup>
@@ -63,7 +82,11 @@ function AddActivityForm (props){
             </FormGroup>
             <FormGroup>
                 <Label>Location</Label>
-                <Input type="text" onChange={handleLocationChange}></Input>
+                <Input type="text" 
+                id="autoLocationAdd"
+                placeholder="Enter Address"
+                onFocus={initAutocomplete}
+                ></Input>
             </FormGroup>
             <FormGroup>
                 <Label>Time Duration</Label>
