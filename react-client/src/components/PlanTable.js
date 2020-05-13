@@ -80,15 +80,6 @@ const PlanTable = (props) => {
     for(const activity of props.activity){
         let start = new Date(activity.time_start);
         let start_day = formatDate(start);
-        // let day_index = days.findIndex(day => day === start_day);
-        // if(day_index === -1){
-        //     days.push(start_day);
-        //     day_index = days.length -1;
-        //     for(let i=0; i< rowData.length; i++){
-        //         rowData[i][start_day] = "";
-
-        //     }
-        // }
         let end = new Date(activity.time_end);
         let start_hour = start.getHours();
         let end_hour = end.getHours();
@@ -122,7 +113,8 @@ const PlanTable = (props) => {
             //setting class for the divs for each cell to identify which cells are going to be spanned
             cellClass: function(params) {
                 if(params.data.rowSpan[params.colDef.field]){
-                    return "cellSpan";
+                    let day = params.colDef.field.split(" ");
+                    return `cellSpan-${day[0]}`;
                 }else if(params.data[params.colDef.field] !== 0){
                     return "partCellSpan";
                 }else{

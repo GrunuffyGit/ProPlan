@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input} from "reactstrap";
 import { addActivity, getCoordinates} from "../utils/apiCalls";
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
@@ -11,7 +11,6 @@ function AddActivityForm (props){
     const [activityTime_Start, setActivityTime_Start] = useState();
     const [activityTime_End, setActivityTime_End] = useState();
     const [activityNotes, setActivityNotes] = useState(null);
-
 
     const add = e => {
         e.preventDefault();

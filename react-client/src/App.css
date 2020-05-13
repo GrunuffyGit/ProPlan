@@ -136,11 +136,39 @@ padding-left: 5em;
   margin-bottom: 2em;
 }
 
-.cellSpan{
-  background: rgb(150, 203, 235);
-  border-left: 1px solid  rgb(144, 194, 226) !important;
-  border-right: 1px solid rgb(144, 194, 226)  !important;
-  border-bottom: 1px solid rgb(144, 194, 226)  !important;
+.cellSpan-Monday{
+  background: rgb(172, 221, 251);
+  border: 1px solid  rgb(163, 213, 245) !important;
+}
+
+.cellSpan-Tuesday{
+  background: rgb(180, 185, 251);
+  border: 1px solid  rgb(173, 178, 246) !important;
+}
+
+.cellSpan-Wednesday{
+  background: rgb(253, 208, 243);
+  border: 1px solid  rgb(250, 200, 239) !important;
+}
+
+.cellSpan-Thursday{
+  background: rgb(251, 183, 183) ;
+  border: 1px solid  rgb(250, 173, 173) !important;
+}
+
+.cellSpan-Friday{
+  background: rgb(255, 243, 178);
+  border: 1px solid  rgb(251, 236, 151) !important;
+}
+
+.cellSpan-Saturday{
+  background: rgb(213, 251, 170);
+  border: 1px solid  rgb(203, 248, 152) !important;
+}
+
+.cellSpan-Sunday{
+  background: rgb(163, 253, 226);
+  border: 1px solid  rgb(139, 250, 217) !important;
 }
 
 .partCellSpan{

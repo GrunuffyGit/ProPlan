@@ -39,7 +39,8 @@ const AllMyPlans = () =>{
     <div className="App">
       <Row id="allPlansHeader">
         <Col>
-          <h1 id="allPlanHeader"> My Plans </h1>
+          <h1 id="allPlanHeader"> My Plans</h1>
+          <img src="../src/images/diet.png" />
         </Col>
         <Col>
           <Button id="createPlanBtn" size="lg" onClick={openModal}> Create Plan</Button>
