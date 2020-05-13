@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input} from "reactstrap";
 import { addActivity, getCoordinates} from "../utils/apiCalls";
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
@@ -54,9 +54,8 @@ function AddActivityForm (props){
 
     let autocomplete;
 
-    const google = window.google;
-
     function initAutocomplete() {
+        const google = window.google;
         autocomplete = new google.maps.places.Autocomplete(document.getElementById('autoLocationAdd'));
         autocomplete.setFields(['formatted_address', 'geometry']);
         autocomplete.addListener('place_changed', fillInAddress);

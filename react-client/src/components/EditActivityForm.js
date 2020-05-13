@@ -86,9 +86,8 @@ function EditActivityForm (props) {
 
     let autocomplete;
 
-    const google = window.google;
-
     function initAutocomplete() {
+        const google = window.google;
         autocomplete = new google.maps.places.Autocomplete(document.getElementById('autoLocationEdit'));
         autocomplete.setFields(['formatted_address', 'geometry']);
         autocomplete.addListener('place_changed', fillInAddress);
