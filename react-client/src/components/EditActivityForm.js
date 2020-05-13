@@ -4,7 +4,7 @@ import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
 import { editActivity, deleteActivity } from "../utils/apiCalls";
 
 function EditActivityForm (props) {
-    console.log(props);
+    // console.log(props);
     const [activityName, setActivityName] = useState(props.activityToEdit.name);
     const [activityLocation, setActivityLocation] = useState(props.activityToEdit.location);
     const [activityCoordinates, setActivityCoordinates] = useState(props.activityToEdit.coordinates);
@@ -47,7 +47,7 @@ function EditActivityForm (props) {
             notes: activityNotes
         }
         
-        console.log(activityJSON);
+        // console.log(activityJSON);
         const updateA = await editActivity(activityJSON);
         if(updateA){
             props.update();
@@ -63,7 +63,7 @@ function EditActivityForm (props) {
     }
 
     const clockChange = e => {
-        console.log(e);
+        // console.log(e);
         if(e[0]){
             let time1 = new Date(props.day);
             // console.log("timestart before", time1);

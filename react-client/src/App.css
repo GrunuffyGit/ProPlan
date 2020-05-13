@@ -146,3 +146,14 @@ padding-left: 5em;
 .partCellSpan{
   display: none;
 }
+
+ul {
+  list-style-type: none;
+}
+.invisible{
+  height: 0px !important;
+}
+
+#maps{
+  height: 30em;
+}

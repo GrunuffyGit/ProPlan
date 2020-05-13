@@ -24,7 +24,7 @@ const DropDown = (props) => {
         {props.buttonName}
         </DropdownToggle>
       <DropdownMenu>
-        {props.ddOptions.map(item =>(<DropdownItem id={item} onClick={props.onClick}>{item}</DropdownItem>))}
+        {props.ddOptions.map(item =>(<DropdownItem key={item} id={item} onClick={props.onClick}>{item}</DropdownItem>))}
       </DropdownMenu>
     </Dropdown>
   );

@@ -42,7 +42,7 @@ function AddActivityForm (props){
     }
 
     const clockChange = e => {
-        console.log(e);
+        // console.log(e);
         let time = new Date(props.day);
         if(e[0]){
             time.setHours(e[0].substr(0,2));

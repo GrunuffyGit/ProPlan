@@ -9,6 +9,7 @@ import {
 import classnames from 'classnames';
 import AddActivityForm from "./AddActivityForm";
 import EditActivity from "./EditActivity";
+import PlanMap from "./planMap";
 
 function ActivityForm (props){
     const [activeTab, setActiveTab] = useState('1');
@@ -30,6 +31,11 @@ function ActivityForm (props){
               onClick={() => { toggle('2'); }}>Edit an Activity
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink className={classnames({ active: activeTab === '3' })}
+              onClick={() => { toggle('3'); }}>Map My Day
+              </NavLink>
+            </NavItem>
           </Nav>
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1">
@@ -43,6 +49,11 @@ function ActivityForm (props){
                     activity={props.activity} 
                     update={props.update} 
                     day={props.day} />
+            </TabPane>
+            <TabPane tabId="3">
+                <PlanMap 
+                  activity={props.activity} 
+                />
             </TabPane>
           </TabContent>
         </div>
