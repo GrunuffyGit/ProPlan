@@ -33,10 +33,10 @@ function PlanMap(props) {
         return(
             <div>
                 <Row>
-                    <ul> The following events are missing coordinates:
+                    <ul id="missingMsg"> The following events are missing coordinates:
                         {missing.map(activity => (<li key={activity.id}>{activity.name}</li>))}
                     </ul>
-                    <p>To view your plan on the map, please select a location given by google!</p>   
+                    <p>To view your plan on the map, please edit your events and select a location given by google!</p>   
                 </Row>
                 <Row className="invisible">
                     <div id="maps" height="0px !important"></div>

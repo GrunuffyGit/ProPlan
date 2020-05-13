@@ -147,8 +147,12 @@ padding-left: 5em;
   display: none;
 }
 
-ul {
+#missingMsg{
   list-style-type: none;
+  position: relative !important;
+  padding: 0;
+  padding-top: 5em;
+  left: 25%;
 }
 .invisible{
   height: 0px !important;
