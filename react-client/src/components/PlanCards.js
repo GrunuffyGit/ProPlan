@@ -26,17 +26,17 @@ const PlanCard = (props) =>{
     return(
         <Col xs="4" id="planCard">
             <Card>
-                <CardImg
-                className="planImage"
-                src={image_url}
-                alt="planImage"
-                />
                 <CardBody>
-                <CardTitle>{name}</CardTitle>
-                <CardSubtitle>{formatDate(start_date)} - {formatDate(end_date)}</CardSubtitle>
-                <CardText>
-                    {description}
-                </CardText>
+                    <CardImg
+                    className="planImage"
+                    src={image_url}
+                    alt="planImage"
+                    />
+                    <CardTitle>{name}</CardTitle>
+                    <CardSubtitle>{formatDate(start_date)} - {formatDate(end_date)}</CardSubtitle>
+                    <CardText>
+                        {description}
+                    </CardText>
                 </CardBody>
                 <Row id="planCardBtnRow">
                     <Col>

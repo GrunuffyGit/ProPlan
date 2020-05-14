@@ -65,6 +65,10 @@ padding-right: 5em;
 padding-left: 5em;
 }
 
+.homeFeature{
+  border: none;
+}
+
 #allPlansHeader{
   padding-left: 2em;
   padding-top: 2em;
@@ -104,6 +108,11 @@ padding-left: 5em;
 
 #planCard{
   padding: 2em;
+}
+
+.card-title{
+  padding-top: 1em;
+  font-weight: bold;
 }
 
 #planCardBtnRow{

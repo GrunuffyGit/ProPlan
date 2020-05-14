@@ -8,6 +8,10 @@ import {
     CardBody, 
     Row,
     Col} from "reactstrap";
+import map from "../images/map.png";
+import plan from "../images/sport.png";
+import craft from "../images/craft.png";
+
 const Home = () => {
     return (
         <div className="App">
@@ -23,40 +27,40 @@ const Home = () => {
             <h2>Features</h2>
                 <Row id="featureRow">
                     <Col>
-                        <Card>
+                        <Card className="homeFeature">
                             <CardBody>
-                                <CardImg  className="features" top  src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
+                                <CardImg  className="features" top  src={plan}/>
                                 <CardTitle>
-                                    Plan Creation
+                                    Create Your Plan
                                 </CardTitle>
                                 <CardText>
-                                    cardtext
+                                    Create any plans for an upcoming trip or event in your life.
                                 </CardText>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card className="homeFeature">
                             <CardBody>
-                                <CardImg className="features" top src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
+                                <CardImg className="features" top src={map}/>
                                 <CardTitle>
-                                    Visualize
+                                    Visualize Your Plan
                                 </CardTitle>
                                 <CardText>
-                                    cardtext
+                                    Visualize your plans on tables and maps to help you plan better.
                                 </CardText>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card className="homeFeature">
                             <CardBody>
-                                <CardImg className="features" top src="https://i.pinimg.com/originals/5c/33/ae/5c33ae63a4afea29b7f7744925995202.jpg"/>
+                                <CardImg className="features" top src={craft}/>
                                 <CardTitle>
-                                    Add Activities
+                                    Customize Your Plan
                                 </CardTitle>
                                 <CardText>
-                                    cardtext
+                                    The ability to add multiple activities to your day to maximize time.
                                 </CardText>
                             </CardBody>
                         </Card>
