@@ -19,6 +19,7 @@ const PlanCard = (props) =>{
 
     const {id, name, description, image_url, start_date, end_date} = props.plan;
     let begin_date = new Date (start_date);
+    console.log("begin date", begin_date);
     begin_date  = begin_date.toDateString();
     let stop_date = new Date (end_date);
     stop_date = stop_date.toDateString();

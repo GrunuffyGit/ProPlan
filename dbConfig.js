@@ -21,6 +21,7 @@ class dbFunctions{
     addPlan = function(req,res){
         let {created_by, name, description, image_url, start_date, end_date} = req.body; 
         start_date = new Date (start_date);
+        console.log("add plan start",start_date);
         end_date = new Date (end_date);
         if(description === null){
             description = "No Description";

@@ -51,7 +51,7 @@ function PlanForm (props){
         setimageURL(e.target.value);
     }
     const handleDateChange = (e) =>{
-        console.log(e);
+        console.log("Date change", e);
         setDates(e);
     }
 
