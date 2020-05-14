@@ -3,6 +3,7 @@ import DropDown from './DropDown';
 import PlanTable from './PlanTable';
 import ActivityForm from './ActivityForm';
 import { Row, Col } from 'reactstrap';
+import thinking from "../images/animals.png"
 
 const sortingActivities = (activiesToSort, sortedActivityArray) => {
     let formatArray = [];
@@ -122,8 +123,8 @@ const EditTab = (props) => {
     return (
         <div>
             <h1 id="selectDayHeader">Select a day to view and edit your activities!</h1>
-            <img id="catJump" src="https://media.giphy.com/media/KfSOWTWvN03AktOl5Q/giphy.gif" />
-            <DropDown buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
+            <DropDown id="selectDayBtn" buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
+            <img id="catSelect" src={thinking} />
         </div>
     );
 }

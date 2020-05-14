@@ -27,7 +27,7 @@ function EditActivity (props){
         if(indexOfActivity > -1){
             return(
                 <div>
-                    <DropDown buttonName="Select an Activity" ddOptions={ddOpt} onClick={activityToEdit}/>
+                    <DropDown id="selectActivityBtn" buttonName="Select an Activity" ddOptions={ddOpt} onClick={activityToEdit}/>
                     <EditActivityForm day={props.day} update={props.update} selectedActivity={selectedActivity} activityToEdit={props.activity[indexOfActivity]}/>
                 </div>
                 
@@ -36,7 +36,7 @@ function EditActivity (props){
     }
     return(
         <div>
-            <DropDown buttonName="Select an Activity" ddOptions={ddOpt} onClick={activityToEdit}/>
+            <DropDown id="selectActivityBtn" buttonName="Select an Activity" ddOptions={ddOpt} onClick={activityToEdit}/>
         </div>
     );
 }

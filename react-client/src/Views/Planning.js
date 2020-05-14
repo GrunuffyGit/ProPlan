@@ -11,6 +11,8 @@ import { useAuth0 } from "../react-auth0-spa";
 import { hasPlan, getActivities, getPlan } from '../utils/apiCalls';
 import ViewTab from '../components/ViewTab';
 import EditTab from '../components/EditTab';
+import laptop from "../images/laptop.png"
+import pencil from "../images/avatar.png"
 
 const Planning = ({match}) =>{
   const { params: { planName, planID } } = match;
@@ -81,12 +83,12 @@ const Planning = ({match}) =>{
           <Nav tabs>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '1' })}
-              onClick={() => { toggle('1'); }}>View Entire Plan
+              onClick={() => { toggle('1'); }}>View Entire Plan <img className="tabImg" src={laptop} />
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '2' })}
-              onClick={() => { toggle('2'); }}>View Activities
+              onClick={() => { toggle('2'); }}>View Activities <img className="tabImg" src={pencil} />
               </NavLink>
             </NavItem>
           </Nav>

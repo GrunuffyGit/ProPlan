@@ -119,11 +119,15 @@ padding-left: 5em;
   padding-top: 1em;
 }
 
-#catJump{
-  height: 18em;
+#catSelect{
+  transform: scaleX(-1);
+  height: 17em;
+  padding-right: 75em;
+  padding-bottom: 1em;
 }
 
 #selectDayBtn{
+  text-align: center;
   padding: 2em;
 }
 
@@ -131,10 +135,26 @@ padding-left: 5em;
   height: 3em;
 }
 
+.dropdown-toggle{
+  padding-left: 3.5em;
+  padding-right: 3.5em;
+}
+
+.dropdown-menu{
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+}
+
+#selectActivityBtn{
+  text-align: center;
+  padding-top: 2em;
+}
+
 #addActivityForm{
   padding-top: 3em;
   margin-left: 5em;
   margin-right: 5em;
+  padding-bottom: 1em;
 }
 
 #editActivityForm{
