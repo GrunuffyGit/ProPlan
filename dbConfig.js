@@ -20,7 +20,7 @@ class dbFunctions{
 
     addPlan = function(req,res){
         let {created_by, name, description, image_url, start_date, end_date} = req.body;
-        console.log("add plan start",start_date);
+        // console.log("add plan start",start_date);
         if(description === null){
             description = "No Description";
         }
@@ -42,8 +42,8 @@ class dbFunctions{
         let {plan_id, name, location, coordinates, time_start, time_end, notes} = req.body;
         time_start = new Date (time_start);
         time_end = new Date (time_end);
-        console.log(time_end);
-        console.log(time_start);
+        // console.log(time_end);
+        // console.log(time_start);
         pool.query("INSERT INTO activities (plan_id, name, location, coordinates, time_start, time_end, notes) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;",
         [plan_id, name, location, coordinates, time_start, time_end, notes], 
         (error,result)=>{
@@ -142,12 +142,12 @@ class dbFunctions{
     }
 
     editActivity = function(req, res){
-        console.log("req",req.body);
+        // console.log("req",req.body);
         let {activity_id, name, location, coordinates, time_start, time_end, notes} = req.body;
         time_start = new Date (time_start);
         time_end = new Date (time_end);
-        console.log(time_start);
-        console.log(time_end);
+        // console.log(time_start);
+        // console.log(time_end);
         pool.query(`UPDATE activities SET name = $1, location = $2, coordinates = $3, time_start = $4, time_end = $5, notes = $6 WHERE id = $7 RETURNING *;`,
         [name, location, coordinates, time_start, time_end, notes, activity_id],
         (error,result)=>{

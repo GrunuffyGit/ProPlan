@@ -18,7 +18,7 @@ const PlanCard = (props) =>{
     }
 
     const {id, name, description, image_url, start_date, end_date} = props.plan;
-    console.log("start",start_date);
+    // console.log("start",start_date);
     return(
         <Col xs="4" id="planCard">
             <Card>
@@ -44,9 +44,9 @@ const PlanCard = (props) =>{
 
 
 function formatDate(date) {
-    console.log(date)
+    // console.log(date)
     let formatDate = new Date(date);
-    console.log(formatDate);
+    // console.log(formatDate);
     let YYYY = formatDate.getFullYear();
     let MM = formatDate.getMonth() + 1;
     let DD = formatDate.getDate();

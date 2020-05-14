@@ -32,7 +32,7 @@ function PlanForm (props){
             end_date: dates[1]
         }
         const addP = async()=> {
-            console.log(planJSON);
+            // console.log(planJSON);
             let planCall = await addPlan(planJSON);
             if(planCall){
                 props.update();
@@ -51,7 +51,7 @@ function PlanForm (props){
         setimageURL(e.target.value);
     }
     const handleDateChange = (e) =>{
-        console.log("Date change", e);
+        // console.log("Date change", e);
         setDates(e);
     }
 
