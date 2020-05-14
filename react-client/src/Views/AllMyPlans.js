@@ -4,7 +4,7 @@ import { useAuth0 } from "../react-auth0-spa";
 import { getPlans } from '../utils/apiCalls';
 import PlanCard from '../components/PlanCards';
 import PlanForm from '../components/PlanForm';
-
+import Diet from "../images/diet.png";
 const AllMyPlans = () =>{
   const { loading, user } = useAuth0();
   const [plans, setPlans] = useState();
@@ -39,8 +39,7 @@ const AllMyPlans = () =>{
     <div className="App">
       <Row id="allPlansHeader">
         <Col>
-          <h1 id="allPlanHeader"> My Plans</h1>
-          <img src="../src/images/diet.png" />
+          <h1 id="allPlanHeader"> My Plans <img id="myPlanImg" src={Diet} /></h1>
         </Col>
         <Col>
           <Button id="createPlanBtn" size="lg" onClick={openModal}> Create Plan</Button>

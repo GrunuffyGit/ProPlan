@@ -10,6 +10,9 @@ import classnames from 'classnames';
 import AddActivityForm from "./AddActivityForm";
 import EditActivity from "./EditActivity";
 import PlanMap from "./planMap";
+import crayon from "../images/draw.png";
+import star from "../images/favorite.png";
+import map from "../images/signs.png"
 
 function ActivityForm (props){
     const [activeTab, setActiveTab] = useState('1');
@@ -23,17 +26,17 @@ function ActivityForm (props){
             <Nav tabs>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '1' })}
-              onClick={() => { toggle('1'); }}>Add Activity
+              onClick={() => { toggle('1'); }}>Add Activity <img className="tabImg" src={star} /> 
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '2' })}
-              onClick={() => { toggle('2'); }}>Edit an Activity
+              onClick={() => { toggle('2'); }}>Edit an Activity <img className="tabImg" src={crayon} />
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '3' })}
-              onClick={() => { toggle('3'); }}>Map My Day
+              onClick={() => { toggle('3'); }}>Map My Day <img className="tabImg" src={map} /> 
               </NavLink>
             </NavItem>
           </Nav>

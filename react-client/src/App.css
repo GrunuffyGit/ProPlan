@@ -71,6 +71,15 @@ padding-left: 5em;
   padding-bottom: 1em;
 }
 
+#myPlanImg{
+  height: 1em;
+}
+
+.modal-body{
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}
+
 #createPlanBtn{
   position: relative !important;
   top: 45%;
@@ -110,8 +119,16 @@ padding-left: 5em;
   padding-top: 1em;
 }
 
+#catJump{
+  height: 18em;
+}
+
 #selectDayBtn{
   padding: 2em;
+}
+
+.tabImg{
+  height: 3em;
 }
 
 #addActivityForm{

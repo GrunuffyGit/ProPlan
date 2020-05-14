@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, FormGroup, Label, Input} from "reactstrap";
 import { addActivity, getCoordinates} from "../utils/apiCalls";
 import TimeRangePicker from '@wojtekmaj/react-timerange-picker';
@@ -11,6 +11,22 @@ function AddActivityForm (props){
     const [activityTime_Start, setActivityTime_Start] = useState();
     const [activityTime_End, setActivityTime_End] = useState();
     const [activityNotes, setActivityNotes] = useState(null);
+    const [saving, setSaving] = useState(false);
+
+    useEffect(()=>{
+        if(activityTime_Start){
+            let start = new Date(activityTime_Start);
+            let startHR = start.getHours();
+            let current1 = new Date(props.day);
+            setActivityTime_Start(current1.setHours(startHR));
+        }
+        if(activityTime_End){
+            let end = new Date(activityTime_End);
+            let endHR = end.getHours();
+            let current2 = new Date(props.day);
+            setActivityTime_End(current2.setHours(endHR));
+        }
+    },[props.day])
 
     const add = e => {
         e.preventDefault();
@@ -27,9 +43,17 @@ function AddActivityForm (props){
             let actCall = await addActivity(activityJSON);
             if(actCall){
                 props.update();
+                setActivityName();
+                setActivityLocation(null);
+                setActivityCoordinates(null);
+                setActivityTime_Start();
+                setActivityTime_End();
+                setActivityNotes(null);
+                setSaving(false);
             }
         }
         addA();
+        setSaving(true);
     }
 
     const handleNameChange = (e) =>{
@@ -70,6 +94,13 @@ function AddActivityForm (props){
             setActivityLocation(place.formatted_address);
             setActivityCoordinates(place.geometry.location.toString());
         }
+    }
+
+    if(saving){
+        return(
+            <img className="loadingImg" src="https://steamuserimages-a.akamaihd.net/ugc/779615184453193381/6545C065131A71752DEC0EB8EFF64A166177DCFD/"></img>
+
+        );
     }
 
     return(

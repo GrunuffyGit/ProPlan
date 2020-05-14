@@ -106,7 +106,7 @@ const EditTab = (props) => {
     if(selectedDay){
         return (
             <div>
-                <DropDown buttonName="Select a New Day" onClick={selectDay} ddOptions={daysInPlan}/>
+                <DropDown id="selectDayBtn" buttonName="Select a New Day" onClick={selectDay} ddOptions={daysInPlan}/>
                 <Row>
                     <Col id="tableContainer">
                         <PlanTable plan={planObj} activity={currentActivities}/>
@@ -122,6 +122,7 @@ const EditTab = (props) => {
     return (
         <div>
             <h1 id="selectDayHeader">Select a day to view and edit your activities!</h1>
+            <img id="catJump" src="https://media.giphy.com/media/KfSOWTWvN03AktOl5Q/giphy.gif" />
             <DropDown buttonName="Select a Day" onClick={selectDay} ddOptions={daysInPlan}/>
         </div>
     );
