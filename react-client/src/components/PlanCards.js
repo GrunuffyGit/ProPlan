@@ -18,12 +18,7 @@ const PlanCard = (props) =>{
     }
 
     const {id, name, description, image_url, start_date, end_date} = props.plan;
-    let begin_date = new Date (start_date);
-    console.log("begin date", begin_date);
-    begin_date  = begin_date.toDateString();
-    let stop_date = new Date (end_date);
-    stop_date = stop_date.toDateString();
-
+    console.log("start",start_date);
     return(
         <Col xs="4" id="planCard">
             <Card>
@@ -39,15 +34,9 @@ const PlanCard = (props) =>{
                         {description}
                     </CardText>
                 </CardBody>
-                {/* <Col id="planCardBtnRow"> */}
-                    {/* <Row>  */}
                         <Button id="planCardBtn" href={`/MyPlans/${name}/${id}`}>View Plan</Button>
-                    {/* </Row>
-                    <Row>  */}
                         <Button id="planCardBtn" onClick={openModal}>Edit Plan</Button>
                         <EditPlanForm plan={props.plan} toggle={openModal} isModalOpen={modal} update={props.update}/>
-                    {/* </Row> */}
-                {/* </Col>  */}
             </Card>
          </Col>
     )
@@ -55,6 +44,7 @@ const PlanCard = (props) =>{
 
 
 function formatDate(date) {
+    console.log(date)
     let formatDate = new Date(date);
     console.log(formatDate);
     let YYYY = formatDate.getFullYear();
