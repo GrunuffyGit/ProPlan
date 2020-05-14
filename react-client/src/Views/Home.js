@@ -16,8 +16,8 @@ const Home = () => {
     return (
         <div className="App">
             <Jumbotron>
-                <h1>Welcome to ProPlan</h1>
-                <h3>Planning in the right direction.</h3>
+                <h1 id="welcome">Welcome to ProPlan</h1>
+                <h3 id="slogan">Planning in the right direction.</h3>
             </Jumbotron>
             <h2>What is Proplan?</h2>
             <p className="proplan-description">

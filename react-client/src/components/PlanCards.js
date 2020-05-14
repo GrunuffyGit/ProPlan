@@ -38,15 +38,15 @@ const PlanCard = (props) =>{
                         {description}
                     </CardText>
                 </CardBody>
-                <Row id="planCardBtnRow">
-                    <Col>
-                        <Button href={`/MyPlans/${name}/${id}`}>View Plan</Button>
-                    </Col>
-                    <Col>
-                        <Button onClick={openModal}>Edit Plan</Button>
+                {/* <Col id="planCardBtnRow"> */}
+                    {/* <Row>  */}
+                        <Button id="planCardBtn" href={`/MyPlans/${name}/${id}`}>View Plan</Button>
+                    {/* </Row>
+                    <Row>  */}
+                        <Button id="planCardBtn" onClick={openModal}>Edit Plan</Button>
                         <EditPlanForm plan={props.plan} toggle={openModal} isModalOpen={modal} update={props.update}/>
-                    </Col>
-                </Row>
+                    {/* </Row> */}
+                {/* </Col>  */}
             </Card>
          </Col>
     )

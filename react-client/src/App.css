@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
-
 .App {
   text-align: center;
   font-family: 'Varela Round', sans-serif !important;
@@ -45,8 +44,22 @@
 }
 
 .jumbotron{
+  background-color:white;
+  background-image: url("https://i.pinimg.com/originals/fd/c5/cf/fdc5cfe96ae11bcf1d0b42956efa971c.jpg");
+  background-size: 950px;
+  background-position: 50% 48%;
+  background-repeat: no-repeat;
   padding-top: 10rem;
   padding-bottom: 10rem;
+}
+
+#welcome{
+  font-size: 8em;
+}
+
+#slogan{
+  position: relative;
+  top: 3em;
 }
 
 h2{
@@ -107,7 +120,17 @@ padding-left: 5em;
 }
 
 #planCard{
-  padding: 2em;
+  padding: 1em;
+}
+
+.planImage{
+  height: 16em;
+}
+
+#planCardBtn{
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: .5em;
 }
 
 .card-title{
