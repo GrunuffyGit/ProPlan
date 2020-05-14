@@ -56,6 +56,7 @@ const PlanCard = (props) =>{
 
 function formatDate(date) {
     let formatDate = new Date(date);
+    console.log(formatDate);
     let YYYY = formatDate.getFullYear();
     let MM = formatDate.getMonth() + 1;
     let DD = formatDate.getDate();

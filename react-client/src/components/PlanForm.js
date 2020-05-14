@@ -23,12 +23,13 @@ function PlanForm (props){
 
     const add = e => {
         e.preventDefault();
+        let start_date = dates[0].setHours(7);
         let planJSON = {
             created_by: props.user.sub,
             name: name, 
             description: description, 
             image_url: imageURL, 
-            start_date: dates[0], 
+            start_date: start_date, 
             end_date: dates[1]
         }
         const addP = async()=> {
