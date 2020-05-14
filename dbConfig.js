@@ -25,7 +25,7 @@ class dbFunctions{
             description = "No Description";
         }
         if(image_url === null){
-            image_url = "https://data.whicdn.com/images/59987907/original.png";
+            image_url = "https://image.flaticon.com/icons/svg/614/614685.svg";
         }
         pool.query("INSERT INTO plans (created_by, name, description, image_url, start_date, end_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;",
         [created_by, name, description, image_url, start_date, end_date], 
