@@ -37,7 +37,7 @@ const PlanTable = (props) => {
     let columnDefs =[{
             headerName: "Time", 
             field: "time",
-            width: 200,
+            width: 120,
         }
     ];
     let rowData = [];
@@ -90,9 +90,14 @@ const PlanTable = (props) => {
         }
     }
 
-    let cellWidth = 300;
-    if(days.length === 1){
-        cellWidth = (window.screen.width/2)-230;
+    let cellWidth;
+    if(window.screen.width > 400){
+        cellWidth = 300;
+        if(days.length === 1){
+            cellWidth = (window.screen.width/2)-120
+        }
+    }else{
+        cellWidth = (window.screen.width)-120;
     }
 
     //setting up column

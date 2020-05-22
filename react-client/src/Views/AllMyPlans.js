@@ -37,11 +37,11 @@ const AllMyPlans = () =>{
   
   return(
     <div className="App">
-      <Row id="allPlansHeader">
-        <Col>
+      <Row id="allPlansHead">
+        <Col id="myPlansHeaderCol">
           <h1 id="allPlanHeader"> My Plans <img id="myPlanImg" src={Diet} /></h1>
         </Col>
-        <Col>
+        <Col id="createPlanBtnCol">
           <Button id="createPlanBtn" size="lg" onClick={openModal}> Create Plan</Button>
         </Col>
       </Row>

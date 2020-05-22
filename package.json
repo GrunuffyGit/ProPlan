@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd react-client && npm install && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,11 @@
   "homepage": "https://github.com/GrunuffyGit/ProPlan#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "pg": "^8.0.2"
+    "pg": "^8.0.2",
+    "request": "^2.88.2",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "devDependencies": {
+    "jasmine": "^3.5.0"
   }
 }

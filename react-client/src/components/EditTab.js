@@ -112,7 +112,7 @@ const EditTab = (props) => {
                     <Col id="tableContainer">
                         <PlanTable plan={planObj} activity={currentActivities}/>
                     </Col>
-                    <Col>
+                    <Col id="activityDetailsContainer">
                         <ActivityForm plan={props.plan} activity={currentActivities} update={updateActivities} day={rawSelectedDay}/>
                     </Col>
                 </Row>

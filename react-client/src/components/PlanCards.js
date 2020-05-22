@@ -20,7 +20,7 @@ const PlanCard = (props) =>{
     const {id, name, description, image_url, start_date, end_date} = props.plan;
     // console.log("start",start_date);
     return(
-        <Col xs="4" id="planCard">
+        <Col id="planCard">
             <Card>
                 <CardBody>
                     <CardImg
