@@ -19,7 +19,7 @@ const Home = () => {
                 <h1 id="welcome">Welcome to ProPlan</h1>
                 <h3 id="slogan">Planning in the right direction.</h3>
             </Jumbotron>
-            <h2>What is Proplan?</h2>
+            <h2>What is ProPlan?</h2>
             <p className="proplan-description">
                 ProPlan is a platform where you can create extensive detailed itineraries. 
                 Whether you are creating a schedule for an event, a work trip, or a vocation, ProPlan can help give you a better understanding of what you are trying to accomplish.
