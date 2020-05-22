@@ -89,9 +89,8 @@ function EditPlanForm (props){
                 </Form>
             </ModalBody>
             <ModalFooter>
-            <Button id="deleteBtn" color="primary" onClick={deleteCurrentPlan}>Delete</Button>{' '}
-            <Button color="primary" onClick={edit}>Edit</Button>{' '}
-            <Button color="secondary" onClick={props.toggle}>Cancel</Button>
+                <Button color="primary" onClick={edit}>Save Changes</Button>{' '}
+                <Button id="deleteBtn" color="danger" onClick={deleteCurrentPlan}>Delete Plan</Button>
             </ModalFooter>
         </Modal>
     );

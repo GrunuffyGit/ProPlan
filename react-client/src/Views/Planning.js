@@ -83,12 +83,12 @@ const Planning = ({match}) =>{
           <Nav tabs>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '1' })}
-              onClick={() => { toggle('1'); }}>View Entire Plan <img className="tabImg" src={laptop} />
+              onClick={() => { toggle('1'); }}>View Activities <img className="tabImg" src={laptop} />
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '2' })}
-              onClick={() => { toggle('2'); }}>View Activities <img className="tabImg" src={pencil} />
+              onClick={() => { toggle('2'); }}>Edit Activities <img className="tabImg" src={pencil} />
               </NavLink>
             </NavItem>
           </Nav>

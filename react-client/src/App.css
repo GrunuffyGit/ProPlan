@@ -114,11 +114,6 @@ padding-left: 5vw;
   min-width: 141.188px;
 }
 
-#deleteBtn{
-  position: relative !important;
-  right: 52%;
-}
-
 #myPlansHeaderCol{
   min-width: 75vw;
 }
@@ -177,7 +172,7 @@ padding-left: 5vw;
 #catSelect{
   transform: scaleX(-1);
   height: 18em;
-  padding-right: 45vw;
+  padding-right: 42vw;
 }
 
 #selectDayBtn{
@@ -202,10 +197,12 @@ padding-left: 5vw;
 #selectActivityBtn{
   text-align: center;
   padding-top: 2em;
+  padding-bottom: 2em;
 }
 #tableContainer{
   padding-left: 0;
   padding-right: 0;
+  padding-bottom: 2em;
   min-width: 50%;
 }
 
@@ -230,14 +227,15 @@ padding-left: 5vw;
 }
 
 #saveActBtn{
-  margin-left: 10em;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  margin-bottom: 1em;
 }
 
 #deleteActBtn{
-  margin-top: 2em;
-  margin-bottom: 2em;
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+  margin-bottom: 1em;
 }
 
 .cellSpan-Monday{

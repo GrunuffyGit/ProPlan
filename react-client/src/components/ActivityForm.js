@@ -26,12 +26,12 @@ function ActivityForm (props){
             <Nav tabs>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '1' })}
-              onClick={() => { toggle('1'); }}>Add Activity <img className="tabImg" src={star} /> 
+              onClick={() => { toggle('1'); }}>Add New <img className="tabImg" src={star} /> 
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink className={classnames({ active: activeTab === '2' })}
-              onClick={() => { toggle('2'); }}>Edit an Activity <img className="tabImg" src={crayon} />
+              onClick={() => { toggle('2'); }}>Edit Existing <img className="tabImg" src={crayon} />
               </NavLink>
             </NavItem>
             <NavItem>
