@@ -38,6 +38,7 @@ const PlanTable = (props) => {
             headerName: "Time", 
             field: "time",
             width: 120,
+            lockPosition: true
         }
     ];
     let rowData = [];
@@ -145,15 +146,17 @@ const PlanTable = (props) => {
         
     }
 
+    let tableHeight = (window.screen.height/1.67);
     return (
         <div
         className="ag-theme-material"
         style={{
-        height: '38em',
+        height: tableHeight,
         width: '100%' }}>
             <AgGridReact
                 defaultColDef={defaultColDef}
                 columnDefs={columnDefs}
+                suppressDragLeaveHidesColumns={true}
                 rowData={rowData}
                 components={components}
                 suppressRowTransform={true}

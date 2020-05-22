@@ -28,6 +28,10 @@
   margin: 0px !important;
 }
 
+.col{
+  padding: 0;
+}
+
 .card{
   min-width: 20em !important;
 }
