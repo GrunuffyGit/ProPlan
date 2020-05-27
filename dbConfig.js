@@ -159,6 +159,19 @@ class dbFunctions{
         });
     }
 
+    deleteUser = function(req, res) {
+        const user_id = req.params.user_id;
+        pool.query("DELETE FROM users WHERE id = $1", [user_id],
+        (error,result)=>{
+            if(error){
+                console.log(error);
+            }else{
+                res.status(200).send("Deleted User");
+            }
+        });
+    }
+
+
     deletePlan = function(req, res) {
         const plan_id = req.params.plan_id;
         pool.query("DELETE FROM plans WHERE id = $1", [plan_id],

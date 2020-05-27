@@ -22,6 +22,7 @@ app.post("/activities", dbFunc.addActivity);
 app.put("/plan", dbFunc.editPlan);
 app.put("/activities", dbFunc.editActivity);
 
+app.delete("/users/:user_id", dbFunc.deleteUser);
 app.delete("/plan/:plan_id", dbFunc.deletePlan);
 app.delete("/activities/:activity_id", dbFunc.deleteActivity);
 
@@ -34,3 +35,5 @@ var server = app.listen(process.env.PORT || 3001, function(){
     var port = server.address().port;
     console.log("my app is running at http://%s:%s", host, port);
 });
+
+module.exports = server;
