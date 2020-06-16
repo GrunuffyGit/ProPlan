@@ -1,10 +1,8 @@
 const Pool = require('pg').Pool;
 const isProduction = process.env.NODE_ENV === "production";
-const connectionString = `postgres://localhost:5432/proplan`;
-const herokuDB = "postgres://bsfqmxmlgyvpfh:6789678c3aee5643425e0d65533e1613b8fb8862c06da36ccdc6d29970b24f72@ec2-54-147-209-121.compute-1.amazonaws.com:5432/d5c61iqif3ai8k";
-//process.env.DATABASE_URL
+const localDB = `postgres://localhost:5432/proplan`;
 const pool = new Pool({
-    connectionString: isProduction ? herokuDB : connectionString
+    connectionString: isProduction ? process.env.DATABASE_URL : localDB
 })
 class dbFunctions{
     addUser = function(req, res){
