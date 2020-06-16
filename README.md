@@ -6,17 +6,15 @@ ProPlan is a platform where you can create extensive detailed itineraries. Wheth
 Technologies that will be used to create this web application are:
 - Fontend UI: ReactJS
 - Backend API: PostgreSQL, ExpressJS, and NodeJS
-- Integrating: Google Maps API
+- Integrating: Google Maps API, Google Places API, ag-Grid, and wojtekmaj
 
 ## MVP (Minimum Viable Product)
 - User creation and login
 - Creating a personal itenary
-- Itenary is in a editable table
-- Modules to input data for time slots
+- Being able to edit itenary
 
 ## Additional Nice-to-Have Features
 - Google Maps API for location and day view
-- Yelp API for food details
 - Link sharing
 
 ## Technical Risks
@@ -25,3 +23,9 @@ Technologies that will be used to create this web application are:
   - Don't know how to create an editable cells in tables, so might take too much time to learn
 - Events that take up more than 1 period of time
   - Not sure how to incorporate editing for an activity that takes up more than 1 cell.
+
+## DB Schema
+![demo](ProPlanDBSchema.jpg)
+
+## Demo Link of Current Product
+https://drive.google.com/file/d/1ik4iNpFJ553bsNgiQ6l_yRZ18SQkVBgX/view?usp=sharing

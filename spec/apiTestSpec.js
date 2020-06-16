@@ -21,10 +21,10 @@ describe("Server", () => {
             expect(data.status).toBe(200);
         });
     });
-    // describe("GET /users/:user_id", () => {
+    // describe("POST /user", () => {
     //     let data = {};
     //     beforeAll((done) => {
-    //         Request.get(`${endpointBegin}/`)
+    //         Request.post(`${endpointBegin}/`)
     //     });
     // });
 });
