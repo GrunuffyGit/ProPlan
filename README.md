@@ -28,4 +28,4 @@ Technologies that will be used to create this web application are:
 ![demo](ProPlanDBSchema.jpg)
 
 ## Demo Link of Current Product
-https://drive.google.com/file/d/1ik4iNpFJ553bsNgiQ6l_yRZ18SQkVBgX/view?usp=sharing
+https://drive.google.com/file/d/103hApj9jaxnAPT9PZEkmU3ews2CL0frp/view?usp=sharing
